@@ -222,11 +222,13 @@ public class TestDataGenerator {
 
                     UsersEntity newUser = usersRepository.save(usersEntityTemp);
                     usersOrganizations.add(new UsersOrganizationsEntity(newUser.getId(), org.getId()));
-                    if (i % 3 == 0) {
+                    if (i % 4 == 0) {
                         usersRolesRepository.save(new UsersRolesEntity(newUser.getId(), "ADMIN"));
-                    } else if (i % 3 == 1) {
+                    } else if (i % 4 == 1) {
+                        usersRolesRepository.save(new UsersRolesEntity(newUser.getId(), "USER"));
+                    } else if (i % 4 == 2) {
                         usersRolesRepository.save(new UsersRolesEntity(newUser.getId(), "SELLER"));
-                    } else {
+                    }else {
                         usersRolesRepository.save(new UsersRolesEntity(newUser.getId(), "BUYER"));
                     }
                     i++;

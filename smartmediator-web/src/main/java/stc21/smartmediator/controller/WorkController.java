@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import java.util.Map;
 
 @Controller
-@PreAuthorize("hasAuthority('USER')")
+//@PreAuthorize("hasAuthority('USER')")
 public class WorkController {
 
     @GetMapping("/orders")

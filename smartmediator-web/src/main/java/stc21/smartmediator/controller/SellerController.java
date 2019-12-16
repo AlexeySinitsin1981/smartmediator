@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Controller
-@PreAuthorize("hasAuthority('SELLER')")
+//@PreAuthorize("hasAuthority('SELLER')")
 public class SellerController {
 
     @GetMapping("/seller")
