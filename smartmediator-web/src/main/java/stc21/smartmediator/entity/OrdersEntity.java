@@ -9,27 +9,28 @@ import java.util.UUID;
 public class OrdersEntity {
     private UUID id;
     private String note;
-    private UUID statusId;
-    private UUID buyerId;
-    private UUID sellerId;
     private UUID deliveryTypeId;
     private UUID pricePatternId;
     private UUID getFrom;
     private UUID setTo;
 
-    public OrdersEntity(
+    private OrderStatusesEntity status;
+    private BuyersEntity buyer;
+    private SellersEntity seller;
+
+     public OrdersEntity(
             String note,
-            UUID statusId,
-            UUID buyerId,
-            UUID sellerId,
+            OrderStatusesEntity status,
+            BuyersEntity buyer,
+            SellersEntity seller,
             UUID deliveryTypeId,
             UUID pricePatternId,
             UUID getFrom,
             UUID setTo) {
         this.note = note;
-        this.statusId = statusId;
-        this.buyerId = buyerId;
-        this.sellerId = sellerId;
+         this.status = status;
+        this.buyer = buyer;
+        this.seller = seller;
         this.deliveryTypeId = deliveryTypeId;
         this.pricePatternId = pricePatternId;
         this.getFrom = getFrom;
@@ -61,22 +62,34 @@ public class OrdersEntity {
         this.note = note;
     }
 
-    @Column(name = "status")
-    public UUID getStatusId() {
-        return statusId;
+    @ManyToOne(cascade=CascadeType.PERSIST)
+    @JoinColumn (name="status")
+    public OrderStatusesEntity getStatus() {
+        return status;
     }
 
-    public void setStatusId(UUID statusId) {
-        this.statusId = statusId;
+    public void setStatus(OrderStatusesEntity status) {
+        this.status = status;
     }
 
-    @Column(name = "buyer_id")
-    public UUID getBuyerId() {
-        return buyerId;
+    @ManyToOne(cascade=CascadeType.PERSIST)
+    @JoinColumn (name="buyer_id")
+    public BuyersEntity getBuyer() {
+        return buyer;
     }
 
-    public void setBuyerId(UUID buyerId) {
-        this.buyerId = buyerId;
+    public void setBuyer(BuyersEntity buyer) {
+        this.buyer = buyer;
+    }
+
+    @ManyToOne(cascade=CascadeType.PERSIST)
+    @JoinColumn (name="seller_id")
+    public SellersEntity getSeller() {
+        return seller;
+    }
+
+    public void setSeller(SellersEntity seller) {
+        this.seller = seller;
     }
 
     @Column(name = "delivery")
@@ -113,15 +126,6 @@ public class OrdersEntity {
 
     public void setSetTo(UUID value) {
         this.setTo = value;
-    }
-
-    @Column(name = "seller_id")
-    public UUID getSellerId() {
-        return sellerId;
-    }
-
-    public void setSellerId(UUID value) {
-        this.sellerId = value;
     }
 
     @Override

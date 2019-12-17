@@ -79,11 +79,6 @@ public class BuyerController {
         listOfOrganizations.add(userEntorganizationsEntity2);
         model.put("listOfOrganizations", listOfOrganizations);
 
-
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Object principal = auth.getPrincipal();
-        model.put("orders", Order.);
-
         return "buyer/buyerhistory";
     }
 

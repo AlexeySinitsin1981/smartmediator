@@ -24,25 +24,26 @@ public class Order {
         this.orderProduct = orderProduct;
     }
 
-    public OrdersEntity create(OrderStatusesEntity status,
-                               BuyersEntity buyer,
-                               SellersEntity seller,
-                               DeliveryTypesEntity deliveryType,
-                               PricePatternsEntity price,
-                               LogisticsPointsEntity sourcePoint,
-                               LogisticsPointsEntity destPoint,
-                               String note) {
-        OrdersEntity order = new OrdersEntity(
-                note,
-                status.getId(),
-                buyer.getId(),
-                seller.getId(),
-                deliveryType.getId(),
-                price.getId(),
-                sourcePoint.getId(),
-                destPoint.getId());
-        return repository.save(order);
-    }
+//    public OrdersEntity create(OrderStatusesEntity status,
+//                               BuyersEntity buyer,
+//                               SellersEntity seller,
+//                               DeliveryTypesEntity deliveryType,
+//                               PricePatternsEntity price,
+//                               LogisticsPointsEntity sourcePoint,
+//                               LogisticsPointsEntity destPoint,
+//                               String note) {
+//        OrdersEntity order = new OrdersEntity(
+//                note,
+//                //FIXME:
+//                status,
+//                buyer.getId(),
+//                seller.getId(),
+//                deliveryType.getId(),
+//                price.getId(),
+//                sourcePoint.getId(),
+//                destPoint.getId());
+//        return repository.save(order);
+//    }
 
     public OrdersEntity get(UUID id) {
         Optional<OrdersEntity> order = repository.findById(id);

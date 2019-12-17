@@ -1,6 +1,6 @@
-
 <!doctype html>
 <html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="admin/fragments/head :: head"></head>
 <body>
 <nav th:replace="admin/fragments/navup :: nav"></nav>
@@ -10,43 +10,50 @@
         <nav th:replace="admin/fragments/navleft :: nav"></nav>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-
             <div class="container">
-                <br>
-                <input class="form-control" id="myInput" type="text" placeholder="Поиск по организации..">
-                <br>
-                <table class="table table-bordered table-striped">
+                <!--                <form th:action="@{/listOfOrders}" method="post" >-->
+                <!--                    <div class="form-group">-->
+                <!--                        <label for="usr">С даты</label>-->
+                <!--                        <input type="date" class="form-control" id="usr">-->
+                <!--                    </div>-->
+                <!--                    <div class="form-group">-->
+                <!--                        <label for="pwd">По дату</label>-->
+                <!--                        <input type="date" class="form-control" id="pwd">-->
+                <!--                    </div>-->
+                <!--                    <button type="submit">Поиск заказов</button>-->
+                <!--                </form>-->
+                <h2>Заказы</h2>
+                <table class="table">
                     <thead>
                     <tr>
-                        <th>Название организации</th>
-                        <th>Адрес организации</th>
-
+                        <td>№ Заказа</td>
+<!--                        <td>Время заказа</td>-->
+                        <td>Заказчик</td>
+<!--                        <td>Адрес заказа</td>-->
+<!--                        <td>Сумма заказа</td>-->
+                        <td>Статус</td>
                     </tr>
                     </thead>
                     <tbody id="myTable">
-                    <tr th:each="organization: ${listOfOrganizations}">
-                        <td th:text="${organization.getFullName()}"/>
-                        <td th:text="${organization.getAddress()}"/>
-                    </tr>
-
+                    <th:block th:each="order : ${orders}">
+                        <tr>
+                            <td th:utext="${order.getId()}">..</td>
+<!--                            <td>Ромашка</td>-->
+                            <td th:utext="${order.getSeller()}">..</td>
+<!--                            <td id="date1" type="date">24.11.2017</td>-->
+<!--                            <td>5000</td>-->
+                            <td th:utext="${order.getStatus().name}">..</td>
+                        </tr>
+                    </th:block>
                     </tbody>
                 </table>
             </div>
+
         </main>
     </div>
 </div>
 <footer th:replace="admin/fragments/footer :: footer"></footer>
-<script>
-    $(document).ready(function(){
-        $("#myInput").on("keyup", function() {
-            var value = $(this).val().toLowerCase();
-            $("#myTable tr").filter(function() {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
 
 
-</script>
 </body>
 </html>
