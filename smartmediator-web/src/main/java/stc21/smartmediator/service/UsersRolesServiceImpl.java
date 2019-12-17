@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 import stc21.smartmediator.repository.UsersRolesRepository;
 
 @Service
-//public class UsersRolesServiceImpl implements UsersRolesService {
-public class UsersRolesServiceImpl {
+public class UsersRolesServiceImpl implements UsersRolesService {
+//public class UsersRolesServiceImpl {
 
     @Autowired
     private UsersRolesRepository repository;

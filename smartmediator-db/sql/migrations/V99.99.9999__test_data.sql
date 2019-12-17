@@ -34,7 +34,7 @@
 -- INSERT INTO delivery_types ("code", "name")
 -- VALUES ('pickup', 'Самовывоз'),
 --        ('supply', 'Доставка');
---
+
 -- INSERT INTO public.users(
 --     id, email, password_hash, full_name, status, role)
 -- VALUES (
