@@ -11,6 +11,8 @@ public class OrdersProductsEntity {
     private UUID id;
     private BigDecimal amount;
     private String note;
+
+    @Column(name = "order_id")
     private UUID orderId;
     private UUID productId;
 
@@ -56,7 +58,6 @@ public class OrdersProductsEntity {
         this.note = note;
     }
 
-    @Column(name = "order_id")
     public UUID getOrderId() {
         return orderId;
     }

@@ -5,8 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "orders", schema = "public", catalog = "postgres")
@@ -25,7 +24,10 @@ public class OrdersEntity {
     private BuyersEntity buyer;
     private SellersEntity seller;
 
-     public OrdersEntity(
+    @OneToMany(mappedBy = "orderId", fetch = FetchType.EAGER)
+    private List<OrdersProductsEntity> products;
+
+    public OrdersEntity(
             String note,
             OrderStatusesEntity status,
             BuyersEntity buyer,
@@ -35,7 +37,7 @@ public class OrdersEntity {
             UUID getFrom,
             UUID setTo) {
         this.note = note;
-         this.status = status;
+        this.status = status;
         this.buyer = buyer;
         this.seller = seller;
         this.deliveryTypeId = deliveryTypeId;
@@ -50,13 +52,21 @@ public class OrdersEntity {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public UUID getId() {
         return id;
     }
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public List<OrdersProductsEntity> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<OrdersProductsEntity> products) {
+        this.products = products;
     }
 
     @Basic
@@ -69,8 +79,8 @@ public class OrdersEntity {
         this.note = note;
     }
 
-    @ManyToOne(cascade=CascadeType.PERSIST)
-    @JoinColumn (name="status")
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "status")
     public OrderStatusesEntity getStatus() {
         return status;
     }
@@ -79,8 +89,8 @@ public class OrdersEntity {
         this.status = status;
     }
 
-    @ManyToOne(cascade=CascadeType.PERSIST)
-    @JoinColumn (name="buyer_id")
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "buyer_id")
     public BuyersEntity getBuyer() {
         return buyer;
     }
@@ -89,8 +99,8 @@ public class OrdersEntity {
         this.buyer = buyer;
     }
 
-    @ManyToOne(cascade=CascadeType.PERSIST)
-    @JoinColumn (name="seller_id")
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "seller_id")
     public SellersEntity getSeller() {
         return seller;
     }
@@ -145,7 +155,7 @@ public class OrdersEntity {
     }
 
     @Column(name = "create_date")
-    @DateTimeFormat(pattern="dd-MMM-YYYY")
+    @DateTimeFormat(pattern = "dd-MMM-YYYY")
     public Timestamp getCreateDate() {
         return createDate;
     }

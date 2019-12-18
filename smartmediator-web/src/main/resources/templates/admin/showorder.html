@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments/head :: head"></head>
+<body>
+<nav th:replace="admin/fragments/navup :: nav"></nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav th:replace="admin/fragments/navleft :: nav"></nav>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="container">
+                <table id="MyTable" class="table">
+                    <tbody>
+                    <tr>
+                        <td>№ заказа</td>
+                        <td th:utext="${{order.getNumber()}}">..</td>
+                    </tr>
+                    <tr>
+                        <td>Дата</td>
+                        <td th:utext="${{order.getCreateDate()}}">..</td>
+                    </tr>
+                    <tr>
+                        <td>Поставщик</td>
+                        <td th:utext="${order.getSeller().getOrg().name}">..</td>
+                    </tr>
+                    <tr>
+                        <td>Покупатель</td>
+                        <td th:utext="${order.getBuyer().getOrg().name}">..</td>
+                    </tr>
+                    <tr>
+                        <td>Сумма</td>
+                        <td th:utext="${order.getPrice()}">..</td>
+                    </tr>
+                    <tr>
+                        <td>Статус</td>
+                        <td th:utext="${order.getStatus().name}">..</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h2>Товары</h2>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>Наименование</th>
+                        <th>Ед. измерения</th>
+                        <th>Цена</th>
+                        <th>Количество</th>
+                        <th>Сумма</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+<!--                    <th:block th:each="product : ${order.products}">-->
+<!--                        <tr>-->
+<!--                            <td>Ania</td>-->
+<!--                            <td>Doe</td>-->
+<!--                            <td>Бахетле</td>-->
+<!--                            <td>Бахетле</td>-->
+<!--                            <td>Бахетле</td>-->
+<!--                        </tr>-->
+<!--                    </th:block>-->
+                    </tbody>
+                </table>
+
+            </div>
+        </main>
+    </div>
+</div>
+<footer th:replace="admin/fragments/footer :: footer"></footer>
+</body>
+</html>

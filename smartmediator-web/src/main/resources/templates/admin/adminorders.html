@@ -37,7 +37,10 @@
                     <tbody id="myTable">
                     <th:block th:each="order : ${orders}">
                         <tr>
-                            <td th:utext="${order.getNumber()}">..</td>
+                            <td>
+                                <a th:href="@{'/admin/orders/' + ${order.getId()}}"
+                                   th:utext="${order.getNumber()}">..</a>
+                            </td>
                             <td th:utext="${{order.getCreateDate()}}">..</td>
                             <td th:utext="${order.getSeller().getOrg().name}">..</td>
                             <td th:utext="${order.getBuyer().getOrg().name}">..</td>

@@ -1,14 +1,13 @@
 package stc21.smartmediator.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import stc21.smartmediator.entity.OrdersEntity;
 import stc21.smartmediator.entity.OrganizationsEntity;
-import stc21.smartmediator.service.Order;
 import stc21.smartmediator.service.OrdersServiceImpl;
 
 import java.util.ArrayList;
@@ -34,6 +33,13 @@ public class AdminController {
         List orders = service.findAll();
         model.put("orders", orders);
         return "admin/adminorders";
+    }
+
+    @GetMapping("/admin/orders/{id}")
+    public String editOrder(@PathVariable UUID id, Map<String, Object> model) {
+        OrdersEntity order = service.findById(id);
+        model.put("order", order);
+        return "admin/showorder";
     }
 
     @GetMapping("/admin/buyers/formCreateBuyer")

@@ -1,12 +1,11 @@
 package stc21.smartmediator.entity;
 
+import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Component;
 import stc21.smartmediator.repository.*;
 
-import javax.xml.crypto.Data;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,9 +29,10 @@ public class FillEntity {
     private final DeliveryTypesRepository deliveryTypesRepository;
     private final LogisticsPointsRepository logisticsPointsRepository;
     private final OrdersRepository ordersRepository;
+    private final OrdersProductsRepository ordersProductsRepository;
 
     public FillEntity(UserStatusesRepository userStatusesRepository,
-                      UsersRepository usersRepository, UsersRolesRepository usersRolesRepository, OrgStatusesRepository orgStatusesRepository, OrganizationsRepository organizationsRepository, UsersOrganizationsRepository usersOrganizationsRepository, SellersRepository sellersRepository, BuyersRepository buyersRepository, PricePatternsRepository pricePatternsRepository, ProductsTypesRepository productsTypesRepository, ProductsRepository productsRepository, UnitsRepository unitsRepository, PricesRepository pricesRepository, OrderStatusesRepository orderStatusesRepository, DeliveryTypesRepository deliveryTypesRepository, LogisticsPointsRepository logisticsPointsRepository, OrdersRepository ordersRepository) {
+                      UsersRepository usersRepository, UsersRolesRepository usersRolesRepository, OrgStatusesRepository orgStatusesRepository, OrganizationsRepository organizationsRepository, UsersOrganizationsRepository usersOrganizationsRepository, SellersRepository sellersRepository, BuyersRepository buyersRepository, PricePatternsRepository pricePatternsRepository, ProductsTypesRepository productsTypesRepository, ProductsRepository productsRepository, UnitsRepository unitsRepository, PricesRepository pricesRepository, OrderStatusesRepository orderStatusesRepository, DeliveryTypesRepository deliveryTypesRepository, LogisticsPointsRepository logisticsPointsRepository, OrdersRepository ordersRepository, OrdersProductsRepository ordersProductsRepository) {
         this.userStatusesRepository = userStatusesRepository;
         this.usersRepository = usersRepository;
         this.usersRolesRepository = usersRolesRepository;
@@ -50,6 +50,7 @@ public class FillEntity {
         this.deliveryTypesRepository = deliveryTypesRepository;
         this.logisticsPointsRepository = logisticsPointsRepository;
         this.ordersRepository = ordersRepository;
+        this.ordersProductsRepository = ordersProductsRepository;
     }
 
     public void clearData() {
@@ -149,7 +150,10 @@ public class FillEntity {
         ProductsTypesEntity productsTypesEntity = new ProductsTypesEntity("code", "code");
         productsTypesRepository.save(productsTypesEntity);
 
-        UnitsEntity unitsEntity = new UnitsEntity("code", "code");
+        UnitsEntity unitsEntity = new UnitsEntity("it", "шт");
+        unitsRepository.save(unitsEntity);
+
+        UnitsEntity unitsEntityLitr = new UnitsEntity("litr", "литр");
         unitsRepository.save(unitsEntity);
 
         List<ProductsEntity> productsEntities = new ArrayList<>();
@@ -288,6 +292,34 @@ public class FillEntity {
         o5.setCreateDate(new Timestamp(System.currentTimeMillis()));
         ordersRepository.save(o5);
 
+        List<OrdersProductsEntity> ordersProductsEntities = new ArrayList<>();
+        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(12), "", o1.getId(), p1.getId()));
+        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(43), "", o1.getId(), p2.getId()));
+        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(32), "", o1.getId(), p3.getId()));
+        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(5), "", o1.getId(), p4.getId()));
+
+        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(122), "", o2.getId(), p1.getId()));
+        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(433), "", o2.getId(), p2.getId()));
+        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(352), "", o2.getId(), p3.getId()));
+        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(56), "", o2.getId(), p4.getId()));
+
+        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(912), "", o3.getId(), p1.getId()));
+        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(643), "", o3.getId(), p2.getId()));
+        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(532), "", o3.getId(), p3.getId()));
+        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(35), "", o3.getId(), p4.getId()));
+        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(712), "", o3.getId(), p5.getId()));
+        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(3), "", o3.getId(), p6.getId()));
+        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(92), "", o3.getId(), p7.getId()));
+        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(565), "", o3.getId(), p8.getId()));
+
+        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(905), "", o4.getId(), p5.getId()));
+        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(7), "", o4.getId(), p1.getId()));
+        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(81), "", o4.getId(), p4.getId()));
+
+        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(1), "", o5.getId(), p1.getId()));
+        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(1), "", o5.getId(), p3.getId()));
+
+        ordersProductsRepository.saveAll(ordersProductsEntities);
     }
 
 }
