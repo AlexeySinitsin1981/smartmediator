@@ -16,7 +16,7 @@
 //import static org.junit.Assert.*;
 //
 //@RunWith(SpringRunner.class)
-//@SpringBootTest(classes = Application.class)
+//@SpringBootTest(classes = ApplicdeleteDataation.class)
 //public class DataGeneratorTest {
 //
 //    @Autowired

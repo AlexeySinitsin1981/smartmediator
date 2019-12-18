@@ -22,18 +22,18 @@
         You have been logged out.
     </div>
     <form class="form-signin" method="post" th:action="@{/login}">
-        <h2 class="form-signin-heading">Please sign in</h2>
+        <h2 class="form-signin-heading">Авторизация</h2>
         <p>
             <label for="username" class="sr-only">Username</label>
-            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required
+            <input type="text" id="username" name="username" class="form-control" placeholder="Логин" required
                    autofocus>
         </p>
         <p>
             <label for="password" class="sr-only">Password</label>
-            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Пароль" required>
         </p>
         <!--        <input name="_csrf" type="hidden" value="c1a6bdbb-1823-4f54-9d3b-6379d0ad5b29"/>-->
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Отправить</button>
     </form>
 </div>
 </body>
