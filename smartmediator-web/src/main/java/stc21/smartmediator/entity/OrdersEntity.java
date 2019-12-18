@@ -1,6 +1,10 @@
 package stc21.smartmediator.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -13,6 +17,9 @@ public class OrdersEntity {
     private UUID pricePatternId;
     private UUID getFrom;
     private UUID setTo;
+    private BigDecimal number;
+    private Timestamp createDate;
+    private BigDecimal price;
 
     private OrderStatusesEntity status;
     private BuyersEntity buyer;
@@ -126,6 +133,34 @@ public class OrdersEntity {
 
     public void setSetTo(UUID value) {
         this.setTo = value;
+    }
+
+    @Column(name = "number")
+    public BigDecimal getNumber() {
+        return number;
+    }
+
+    public void setNumber(BigDecimal number) {
+        this.number = number;
+    }
+
+    @Column(name = "create_date")
+    @DateTimeFormat(pattern="dd-MMM-YYYY")
+    public Timestamp getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Timestamp createDate) {
+        this.createDate = createDate;
+    }
+
+    @Column(name = "price")
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     @Override

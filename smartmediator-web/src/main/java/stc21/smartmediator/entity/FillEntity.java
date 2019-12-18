@@ -3,7 +3,10 @@ package stc21.smartmediator.entity;
 import org.springframework.stereotype.Component;
 import stc21.smartmediator.repository.*;
 
+import javax.xml.crypto.Data;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -208,6 +211,8 @@ public class FillEntity {
         LogisticsPointsEntity logis = new LogisticsPointsEntity("point", "Точка обмена", "Бейкер стрит 221", mag.getId());
         logisticsPointsRepository.save(logis);
 
+        int n = 15000;
+
         OrdersEntity o1 = new OrdersEntity();
         ordersRepository.save(o1);
         o1.setStatus(oNew);
@@ -218,6 +223,9 @@ public class FillEntity {
         o1.setPricePatternId(pricePatternsEntity.getId());
         o1.setGetFrom(logis.getId());
         o1.setSetTo(logis.getId());
+        o1.setNumber(BigDecimal.valueOf(n++));
+        o1.setPrice(BigDecimal.valueOf(45851));
+        o1.setCreateDate(new Timestamp(System.currentTimeMillis()));
         ordersRepository.save(o1);
 
         OrdersEntity o2 = new OrdersEntity();
@@ -230,6 +238,9 @@ public class FillEntity {
         o2.setPricePatternId(pricePatternsEntity.getId());
         o2.setGetFrom(logis.getId());
         o2.setSetTo(logis.getId());
+        o2.setNumber(BigDecimal.valueOf(n++));
+        o2.setPrice(BigDecimal.valueOf(34245));
+        o2.setCreateDate(new Timestamp(System.currentTimeMillis()));
         ordersRepository.save(o2);
 
         OrdersEntity o3 = new OrdersEntity();
@@ -242,6 +253,9 @@ public class FillEntity {
         o3.setPricePatternId(pricePatternsEntity.getId());
         o3.setGetFrom(logis.getId());
         o3.setSetTo(logis.getId());
+        o3.setNumber(BigDecimal.valueOf(n++));
+        o3.setPrice(BigDecimal.valueOf(7234));
+        o3.setCreateDate(new Timestamp(System.currentTimeMillis()));
         ordersRepository.save(o3);
 
         OrdersEntity o4 = new OrdersEntity();
@@ -254,6 +268,9 @@ public class FillEntity {
         o4.setPricePatternId(pricePatternsEntity.getId());
         o4.setGetFrom(logis.getId());
         o4.setSetTo(logis.getId());
+        o4.setNumber(BigDecimal.valueOf(n++));
+        o4.setPrice(BigDecimal.valueOf(968765));
+        o4.setCreateDate(new Timestamp(System.currentTimeMillis()));
         ordersRepository.save(o4);
 
         OrdersEntity o5 = new OrdersEntity();
@@ -266,6 +283,9 @@ public class FillEntity {
         o5.setPricePatternId(pricePatternsEntity.getId());
         o5.setGetFrom(logis.getId());
         o5.setSetTo(logis.getId());
+        o5.setNumber(BigDecimal.valueOf(n++));
+        o5.setPrice(BigDecimal.valueOf(41347));
+        o5.setCreateDate(new Timestamp(System.currentTimeMillis()));
         ordersRepository.save(o5);
 
     }

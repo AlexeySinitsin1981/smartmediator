@@ -27,17 +27,21 @@
                     <thead>
                     <tr>
                         <td>№ Заказа</td>
+                        <td>Дата</td>
                         <td>Поставщик</td>
                         <td>Покупатель</td>
+                        <td>Сумма</td>
                         <td>Статус</td>
                     </tr>
                     </thead>
                     <tbody id="myTable">
                     <th:block th:each="order : ${orders}">
                         <tr>
-                            <td th:utext="${order.getId()}">..</td>
+                            <td th:utext="${order.getNumber()}">..</td>
+                            <td th:utext="${{order.getCreateDate()}}">..</td>
                             <td th:utext="${order.getSeller().getOrg().name}">..</td>
                             <td th:utext="${order.getBuyer().getOrg().name}">..</td>
+                            <td th:utext="${order.getPrice()}">..</td>
                             <td th:utext="${order.getStatus().name}">..</td>
                         </tr>
                     </th:block>
