@@ -8,10 +8,10 @@ import java.util.UUID;
 @Table(name = "sellers", schema = "public", catalog = "postgres")
 public class SellersEntity {
     private UUID id;
-    private UUID orgId;
+    private OrganizationsEntity org;
 
-    public SellersEntity(UUID orgId) {
-        this.orgId = orgId;
+    public SellersEntity(OrganizationsEntity org) {
+        this.org = org;
     }
 
     public SellersEntity() {
@@ -29,13 +29,14 @@ public class SellersEntity {
         this.id = id;
     }
 
-    @Column(name = "org_id")
-    public UUID getOrgId() {
-        return orgId;
+    @ManyToOne(cascade=CascadeType.PERSIST)
+    @JoinColumn (name="org_id")
+    public OrganizationsEntity getOrg() {
+        return org;
     }
 
-    public void setOrgId(UUID id) {
-        this.orgId = id;
+    public void setOrg(OrganizationsEntity org) {
+        this.org = org;
     }
 
     @Override

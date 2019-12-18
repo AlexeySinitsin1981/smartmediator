@@ -3,8 +3,8 @@
 CREATE TABLE buyers
 (
     id                  UUID   NOT NULL PRIMARY KEY DEFAULT uuid_generate_v1mc(),
-    org_id              UUID NOT NULL,
-    price_pattern_id    UUID NOT NULL,
+    org_id              UUID NULL,
+    price_pattern_id    UUID NULL,
     CONSTRAINT pk_buyers UNIQUE (id),
     CONSTRAINT uk_buyers_org_id UNIQUE (org_id),
     CONSTRAINT fk_buyers_org_id FOREIGN KEY (org_id) REFERENCES organizations (id)

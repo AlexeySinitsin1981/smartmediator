@@ -3,14 +3,14 @@
 CREATE TABLE orders
 (
     id               UUID NOT NULL PRIMARY KEY DEFAULT uuid_generate_v1mc(),
-    status           uuid NOT NULL,
-    buyer_id         UUID NOT NULL,
-    seller_id        UUID NOT NULL,
-    delivery         UUID NOT NULL,
-    price_pattern_id UUID NOT NULL,
-    get_from         UUID NOT NULL,
+    status           UUID NULL,
+    buyer_id         UUID NULL,
+    seller_id        UUID NULL,
+    delivery         UUID NULL,
+    price_pattern_id UUID NULL,
+    get_from         UUID NULL,
     set_to           UUID NULL,
-    note             TEXT NOT NULL             DEFAULT '',
+    note             TEXT NULL             DEFAULT '',
     CONSTRAINT pk_orders UNIQUE (id),
     CONSTRAINT fk_orders_status FOREIGN KEY (status) REFERENCES order_statuses (id)
         ON DELETE RESTRICT ON UPDATE RESTRICT,

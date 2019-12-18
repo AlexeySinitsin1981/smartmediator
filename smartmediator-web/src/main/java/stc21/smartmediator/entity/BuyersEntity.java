@@ -8,16 +8,26 @@ import java.util.UUID;
 @Table(name = "buyers", schema = "public", catalog = "postgres")
 public class BuyersEntity {
     private UUID id;
-    private UUID orgId;
+    private OrganizationsEntity org;
     private UUID pricePatternId;
 
-    public BuyersEntity(UUID orgId, UUID pricePatternId) {
-        this.orgId = orgId;
+    public BuyersEntity(OrganizationsEntity org, UUID pricePatternId) {
+        this.org = org;
         this.pricePatternId = pricePatternId;
     }
 
     public BuyersEntity() {
 
+    }
+
+    @ManyToOne(cascade=CascadeType.PERSIST)
+    @JoinColumn (name="org_id")
+    public OrganizationsEntity getOrg() {
+        return org;
+    }
+
+    public void setOrg(OrganizationsEntity org) {
+        this.org = org;
     }
 
     @Id
@@ -31,14 +41,14 @@ public class BuyersEntity {
         this.id = id;
     }
 
-    @Column(name = "org_id")
-    public UUID getOrgId() {
-        return orgId;
-    }
-
-    public void setOrgId(UUID id) {
-        this.orgId = id;
-    }
+//    @Column(name = "org_id")
+//    public UUID getOrgId() {
+//        return orgId;
+//    }
+//
+//    public void setOrgId(UUID id) {
+//        this.orgId = id;
+//    }
 
     @Column(name = "price_pattern_id")
     public UUID getPricePatternId() {

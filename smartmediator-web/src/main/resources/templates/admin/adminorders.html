@@ -27,10 +27,8 @@
                     <thead>
                     <tr>
                         <td>№ Заказа</td>
-<!--                        <td>Время заказа</td>-->
-                        <td>Заказчик</td>
-<!--                        <td>Адрес заказа</td>-->
-<!--                        <td>Сумма заказа</td>-->
+                        <td>Поставщик</td>
+                        <td>Покупатель</td>
                         <td>Статус</td>
                     </tr>
                     </thead>
@@ -38,10 +36,8 @@
                     <th:block th:each="order : ${orders}">
                         <tr>
                             <td th:utext="${order.getId()}">..</td>
-<!--                            <td>Ромашка</td>-->
-                            <td th:utext="${order.getSeller()}">..</td>
-<!--                            <td id="date1" type="date">24.11.2017</td>-->
-<!--                            <td>5000</td>-->
+                            <td th:utext="${order.getSeller().getOrg().name}">..</td>
+                            <td th:utext="${order.getBuyer().getOrg().name}">..</td>
                             <td th:utext="${order.getStatus().name}">..</td>
                         </tr>
                     </th:block>

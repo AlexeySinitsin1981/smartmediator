@@ -30,7 +30,7 @@ public class Seller {
     }
 
     public SellersEntity create(OrganizationsEntity organization) {
-        SellersEntity newSeller = new SellersEntity(organization.getId());
+        SellersEntity newSeller = new SellersEntity(organization);
         return repository.save(newSeller);
     }
 

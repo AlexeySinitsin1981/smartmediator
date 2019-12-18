@@ -128,14 +128,19 @@ public class FillEntity {
         usersOrganizationsEntities.add(new UsersOrganizationsEntity(sell.getId(), knopka.getId()));
         usersOrganizationsRepository.saveAll(usersOrganizationsEntities);
 
-        SellersEntity sellersEntity = new SellersEntity(rogok.getId());
+        SellersEntity sellersEntity = new SellersEntity();
+        sellersRepository.save(sellersEntity);
+        sellersEntity.setOrg(rogok);
         sellersRepository.save(sellersEntity);
 
         PricePatternsEntity pricePatternsEntity = new PricePatternsEntity("magnit", "Магнит",
                 null, "", sellersEntity.getId());
         pricePatternsRepository.save(pricePatternsEntity);
 
-        BuyersEntity buyer = new BuyersEntity(mag.getId(), pricePatternsEntity.getId());
+        BuyersEntity buyer = new BuyersEntity();
+        buyersRepository.save(buyer);
+        buyer.setPricePatternId(pricePatternsEntity.getId());
+        buyer.setOrg(mag);
         buyersRepository.save(buyer);
 
         ProductsTypesEntity productsTypesEntity = new ProductsTypesEntity("code", "code");
@@ -203,15 +208,65 @@ public class FillEntity {
         LogisticsPointsEntity logis = new LogisticsPointsEntity("point", "Точка обмена", "Бейкер стрит 221", mag.getId());
         logisticsPointsRepository.save(logis);
 
-        OrdersEntity o1 = new OrdersEntity("", oNew, buyer, sellersEntity, supply.getId(), pricePatternsEntity.getId(), logis.getId(), logis.getId());
-//        OrdersEntity o2 = new OrdersEntity("", oNew, buyer, sellersEntity, supply.getId(), pricePatternsEntity.getId(), logis.getId(), logis.getId());
-//        OrdersEntity o3 = new OrdersEntity("", oNew, buyer, sellersEntity, supply.getId(), pricePatternsEntity.getId(), logis.getId(), logis.getId());
-//        OrdersEntity o4 = new OrdersEntity("", oNew, buyer, sellersEntity, supply.getId(), pricePatternsEntity.getId(), logis.getId(), logis.getId());
+        OrdersEntity o1 = new OrdersEntity();
+        ordersRepository.save(o1);
+        o1.setStatus(oNew);
+        o1.setBuyer(buyer);
+        o1.setSeller(sellersEntity);
+        o1.setSeller(sellersEntity);
+        o1.setDeliveryTypeId(supply.getId());
+        o1.setPricePatternId(pricePatternsEntity.getId());
+        o1.setGetFrom(logis.getId());
+        o1.setSetTo(logis.getId());
+        ordersRepository.save(o1);
 
-//        ordersRepository.save(o1);
-//        ordersRepository.save(o2);
-//        ordersRepository.save(o3);
-//        ordersRepository.save(o4);
+        OrdersEntity o2 = new OrdersEntity();
+        ordersRepository.save(o2);
+        o2.setStatus(oNew);
+        o2.setBuyer(buyer);
+        o2.setSeller(sellersEntity);
+        o2.setSeller(sellersEntity);
+        o2.setDeliveryTypeId(supply.getId());
+        o2.setPricePatternId(pricePatternsEntity.getId());
+        o2.setGetFrom(logis.getId());
+        o2.setSetTo(logis.getId());
+        ordersRepository.save(o2);
+
+        OrdersEntity o3 = new OrdersEntity();
+        ordersRepository.save(o3);
+        o3.setStatus(oNew);
+        o3.setBuyer(buyer);
+        o3.setSeller(sellersEntity);
+        o3.setSeller(sellersEntity);
+        o3.setDeliveryTypeId(supply.getId());
+        o3.setPricePatternId(pricePatternsEntity.getId());
+        o3.setGetFrom(logis.getId());
+        o3.setSetTo(logis.getId());
+        ordersRepository.save(o3);
+
+        OrdersEntity o4 = new OrdersEntity();
+        ordersRepository.save(o4);
+        o4.setStatus(oNew);
+        o4.setBuyer(buyer);
+        o4.setSeller(sellersEntity);
+        o4.setSeller(sellersEntity);
+        o4.setDeliveryTypeId(supply.getId());
+        o4.setPricePatternId(pricePatternsEntity.getId());
+        o4.setGetFrom(logis.getId());
+        o4.setSetTo(logis.getId());
+        ordersRepository.save(o4);
+
+        OrdersEntity o5 = new OrdersEntity();
+        ordersRepository.save(o5);
+        o5.setStatus(oNew);
+        o5.setBuyer(buyer);
+        o5.setSeller(sellersEntity);
+        o5.setSeller(sellersEntity);
+        o5.setDeliveryTypeId(supply.getId());
+        o5.setPricePatternId(pricePatternsEntity.getId());
+        o5.setGetFrom(logis.getId());
+        o5.setSetTo(logis.getId());
+        ordersRepository.save(o5);
 
     }
 
