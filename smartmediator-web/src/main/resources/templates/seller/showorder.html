@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru" xmlns:th="">
+<head th:replace="seller/fragments/head :: head"></head>
+<body>
+<nav th:replace="seller/fragments/nav :: nav"></nav>
+<main role="main" class="container">
+    <div class="container">
+        <table id="MyTable" class="table">
+            <tbody>
+            <tr>
+                <td>№ заказа</td>
+                <td th:utext="${{order.getNumber()}}">..</td>
+            </tr>
+            <tr>
+                <td>Дата</td>
+                <td th:utext="${{order.getCreateDate()}}">..</td>
+            </tr>
+            <tr>
+                <td>Поставщик</td>
+                <td th:utext="${order.getSeller().getOrg().name}">..</td>
+            </tr>
+            <tr>
+                <td>Покупатель</td>
+                <td th:utext="${order.getBuyer().getOrg().name}">..</td>
+            </tr>
+            <tr>
+                <td>Сумма</td>
+                <td th:utext="${order.getPrice()}">..</td>
+            </tr>
+            <tr>
+                <td>Статус</td>
+                <td th:utext="${order.getStatus().name}">..</td>
+            </tr>
+            </tbody>
+        </table>
+        <h2>Товары</h2>
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>Наименование</th>
+                <th>Ед. измерения</th>
+                <th>Цена</th>
+                <th>Количество</th>
+                <th>Сумма</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="product : ${order.getProducts()}">
+                <tr>
+                    <td th:utext="${product.getProduct().getName()}">..</td>
+                    <td th:utext="${product.getProduct().getUnit().getName()}">..</td>
+                    <td th:utext="${product.getPrice()}">..</td>
+                    <td th:utext="${product.getAmount()}">..</td>
+                    <td th:utext="${#numbers.formatDecimal(product.getPrice() * product.getAmount(),3,2)}">
+                        ..
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+</main>
+<footer th:replace="seller/fragments/footer :: footer"></footer>
+</body>
+</html>

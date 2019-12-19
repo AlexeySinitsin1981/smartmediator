@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import stc21.smartmediator.entity.OrdersEntity;
 import stc21.smartmediator.entity.OrganizationsEntity;
 import stc21.smartmediator.service.OrdersServiceImpl;
 
@@ -24,8 +25,18 @@ public class SellerController {
 
     @GetMapping("/seller")
     public String main(Map<String, Object> model) {
+        List orders = service.findAll();
+        model.put("orders", orders);
 
         return "seller/sellerorders";
+    }
+
+    @GetMapping("/seller/orders/{id}")
+    public String editOrder(@PathVariable UUID id, Map<String, Object> model) {
+        OrdersEntity order = service.findById(id);
+        model.put("order", order);
+
+        return "seller/showorder";
     }
 
     @GetMapping("/seller/bids")
@@ -33,81 +44,5 @@ public class SellerController {
 
         return "seller/sellerbids";
     }
-
-    @GetMapping("/seller/orders")
-    public String orders(Map<String, Object> model) {
-        List orders = service.findAll();
-        model.put("orders", orders);
-
-        return "seller/sellerorders";
-    }
-
-
-//    @GetMapping("/seller/products")
-//    public String products(Map<String, Object> model) {
-//        List<OrganizationsEntity> listOfOrganizations = new ArrayList<>();
-//        OrganizationsEntity userEntorganizationsEntity1 = new OrganizationsEntity();
-//        OrganizationsEntity userEntorganizationsEntity2 = new OrganizationsEntity();
-//        userEntorganizationsEntity1.setFullName("Vasia");
-//        userEntorganizationsEntity1.setAddress("Люберцы");
-//        userEntorganizationsEntity1.setId(new UUID(1,2));
-//        userEntorganizationsEntity2.setId(new UUID(1,2));
-//        userEntorganizationsEntity2.setFullName("Ania");
-//        userEntorganizationsEntity2.setAddress("Mosckow");
-//        listOfOrganizations.add(userEntorganizationsEntity1);
-//        listOfOrganizations.add(userEntorganizationsEntity2);
-//        model.put("listOfOrganizations",listOfOrganizations);
-//        return "seller/sellerproducts";
-//    }
-
-//    @GetMapping("/seller/orders")
-//    public String orders(Map<String, Object> model) {
-//        List<OrganizationsEntity> listOfOrganizations = new ArrayList<>();
-//        OrganizationsEntity userEntorganizationsEntity1 = new OrganizationsEntity();
-//        OrganizationsEntity userEntorganizationsEntity2 = new OrganizationsEntity();
-//        userEntorganizationsEntity1.setFullName("Vasia");
-//        userEntorganizationsEntity1.setAddress("Люберцы");
-//        userEntorganizationsEntity1.setId(new UUID(1,2));
-//        userEntorganizationsEntity2.setId(new UUID(1,2));
-//        userEntorganizationsEntity2.setFullName("Ania");
-//        userEntorganizationsEntity2.setAddress("Mosckow");
-//        listOfOrganizations.add(userEntorganizationsEntity1);
-//        listOfOrganizations.add(userEntorganizationsEntity2);
-//        model.put("listOfOrganizations",listOfOrganizations);
-//        return "seller/sellerorders";
-//    }
-//    @GetMapping("/seller/buyers")
-//    public String buyers(Map<String, Object> model) {
-//        List<OrganizationsEntity> listOfOrganizations = new ArrayList<>();
-//        OrganizationsEntity userEntorganizationsEntity1 = new OrganizationsEntity();
-//        OrganizationsEntity userEntorganizationsEntity2 = new OrganizationsEntity();
-//        userEntorganizationsEntity1.setFullName("Vasia");
-//        userEntorganizationsEntity1.setAddress("Люберцы");
-//        userEntorganizationsEntity1.setId(new UUID(1,2));
-//        userEntorganizationsEntity2.setId(new UUID(1,2));
-//        userEntorganizationsEntity2.setFullName("Ania");
-//        userEntorganizationsEntity2.setAddress("Mosckow");
-//        listOfOrganizations.add(userEntorganizationsEntity1);
-//        listOfOrganizations.add(userEntorganizationsEntity2);
-//        model.put("listOfOrganizations",listOfOrganizations);
-//        return "seller/sellerbuyers";
-//    }
-
-//    @GetMapping("/seller/data")
-//    public String data(Map<String, Object> model) {
-//        List<OrganizationsEntity> listOfOrganizations = new ArrayList<>();
-//        OrganizationsEntity userEntorganizationsEntity1 = new OrganizationsEntity();
-//        OrganizationsEntity userEntorganizationsEntity2 = new OrganizationsEntity();
-//        userEntorganizationsEntity1.setFullName("Vasia");
-//        userEntorganizationsEntity1.setAddress("Люберцы");
-//        userEntorganizationsEntity1.setId(new UUID(1,2));
-//        userEntorganizationsEntity2.setId(new UUID(1,2));
-//        userEntorganizationsEntity2.setFullName("Ania");
-//        userEntorganizationsEntity2.setAddress("Mosckow");
-//        listOfOrganizations.add(userEntorganizationsEntity1);
-//        listOfOrganizations.add(userEntorganizationsEntity2);
-//        model.put("listOfOrganizations",listOfOrganizations);
-//        return "seller/sellerdata";
-//    }
 
 }
