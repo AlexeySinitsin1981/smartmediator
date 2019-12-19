@@ -17,15 +17,15 @@ public interface UsersRepository extends JpaRepository<UsersEntity, UUID> {
 
     Optional<UsersEntity> findByEmail(String email);
 
-    @Transactional
-        default UsersEntity save(UsersEntity user,
-                Iterable<UUID> orgIds,
-                UsersOrganizationsRepository usersOrgRepository) {
-            UsersEntity result = save(user);
-            orgIds.forEach(x -> {
-                UsersOrganizationsEntity userOrg = new UsersOrganizationsEntity(result.getId(), x);
-                usersOrgRepository.save(userOrg);
-            });
-            return result;
-    }
+//    @Transactional
+//        default UsersEntity save(UsersEntity user,
+//                Iterable<UUID> orgIds,
+//                UsersOrganizationsRepository usersOrgRepository) {
+//            UsersEntity result = save(user);
+//            orgIds.forEach(x -> {
+//                UsersOrganizationsEntity userOrg = new UsersOrganizationsEntity(result.getId(), x);
+//                usersOrgRepository.save(userOrg);
+//            });
+//            return result;
+//    }
 }

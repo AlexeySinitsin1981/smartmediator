@@ -3,11 +3,11 @@
 CREATE TABLE users
 (
     id       UUID         NOT NULL PRIMARY KEY DEFAULT uuid_generate_v1mc(),
-    email    varchar(255) NOT NULL CHECK (length(email) > 0),
-    password varchar(255) NOT NULL CHECK (length(password) > 0),
-    username varchar(255) NOT NULL CHECK (length(username) > 0),
-    status   UUID         NOT NULL,
-    active   boolean      NOT NULL,
+    email    varchar(255) NULL CHECK (length(email) > 0),
+    password varchar(255) NULL CHECK (length(password) > 0),
+    username varchar(255) NULL CHECK (length(username) > 0),
+    status   UUID         NULL,
+    active   boolean      NULL,
     CONSTRAINT pk_users UNIQUE (id),
     CONSTRAINT uq_users_email UNIQUE (email),
     CONSTRAINT uq_users_username UNIQUE (username),

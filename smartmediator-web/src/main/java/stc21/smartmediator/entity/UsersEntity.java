@@ -4,17 +4,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Objects;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "users", schema = "public", catalog = "postgres")
 public class UsersEntity implements UserDetails {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     @Basic
@@ -41,6 +38,9 @@ public class UsersEntity implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<RolesEnumEntity> roles;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<UsersOrganizationsEntity> orgs;
+
     public UsersEntity() {
 
     }
@@ -53,6 +53,14 @@ public class UsersEntity implements UserDetails {
         this.username = full_name;
         this.status = status_id;
         this.active = active;
+    }
+
+    public List<UsersOrganizationsEntity> getOrgs() {
+        return orgs;
+    }
+
+    public void setOrgs(List<UsersOrganizationsEntity> orgs) {
+        this.orgs = orgs;
     }
 
     public UUID getId() {
@@ -83,7 +91,9 @@ public class UsersEntity implements UserDetails {
         return status;
     }
 
-    public void setStatus(UUID value) { status = value; }
+    public void setStatus(UUID value) {
+        status = value;
+    }
 
     public String getUsername() {
         return username;

@@ -2,22 +2,18 @@ package stc21.smartmediator.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import stc21.smartmediator.entity.OrdersEntity;
 import stc21.smartmediator.entity.OrganizationsEntity;
-import stc21.smartmediator.entity.UsersEntity;
-import stc21.smartmediator.repository.OrdersRepository;
 import stc21.smartmediator.service.Order;
-import stc21.smartmediator.service.SomeService;
 
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 @Controller
-//@PreAuthorize("hasAuthority('BUYER')")
+@PreAuthorize("hasAuthority('BUYER')")
 public class BuyerController {
 
     @Autowired

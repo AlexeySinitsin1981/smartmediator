@@ -5,6 +5,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import stc21.smartmediator.entity.OrdersEntity;
 import stc21.smartmediator.entity.UsersEntity;
 import stc21.smartmediator.service.OrdersServiceImpl;
@@ -62,7 +63,15 @@ public class AdminController {
         return "admin/showorder";
     }
 
+    @PostMapping("/admin/changePassword")
+    public String changePassword(@PathVariable UUID id, Map<String, Object> model) {
+        return "admin/showorder";
+    }
 
+    @PostMapping("/admin/saveDataUser")
+    public String saveDataUser(@PathVariable UUID id, Map<String, Object> model) {
+        return "admin/showorder";
+    }
 
 //    @GetMapping("/admin/buyers/formCreateBuyer")
 //    public String formCreateUser(Model model) {

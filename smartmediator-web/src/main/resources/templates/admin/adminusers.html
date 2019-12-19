@@ -16,7 +16,7 @@
                 <table class="table table-bordered table-striped">
                     <thead>
                     <tr>
-                        <th>ФИО</th>
+                        <th>Логин</th>
                         <th>Роль</th>
                         <th>ИНН</th>
                         <th>Email</th>
@@ -28,10 +28,22 @@
                         <tr>
                             <td><a th:href="@{'/admin/users/' + ${user.getId()}}"
                                    th:utext="${user.getUsername()}">..</a></td>
+                            <td>
+                                <th:block th:each="role : ${user.getRoles()}">
+                                    <span th:utext="${role}">..</span>
+                                </th:block>
+                            </td>
+                            <td>
+                                <th:block th:each="org : ${user.getOrgs()}">
+                                    <span th:utext="${org.getOrg().getInn()}">..</span>
+                                </th:block>
+                            </td>
                             <td th:utext="${{user.getEmail()}}">..</td>
-                            <td th:utext="${{user.getEmail()}}">..</td>
-                            <td th:utext="${{user.getEmail()}}">..</td>
-                            <td th:utext="${{user.getEmail()}}">..</td>
+                            <td>
+                                <th:block th:each="org : ${user.getOrgs()}">
+                                    <span th:utext="${org.getOrg().getAddress()}">..</span>
+                                </th:block>
+                            </td>
                         </tr>
                     </th:block>
                     </tbody>

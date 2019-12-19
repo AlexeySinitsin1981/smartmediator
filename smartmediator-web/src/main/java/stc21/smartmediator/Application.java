@@ -24,7 +24,6 @@ public class Application {
 
         return args -> {
             System.out.println("Hello from Smart Mediator.");
-            fillEntity.clearData();
             fillEntity.fillData();
         };
     }

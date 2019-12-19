@@ -126,11 +126,23 @@ public class FillEntity {
 
         organizationsRepository.saveAll(organizationsEntities);
 
-        List<UsersOrganizationsEntity> usersOrganizationsEntities = new ArrayList<>();
-        usersOrganizationsEntities.add(new UsersOrganizationsEntity(admin.getId(), rogok.getId()));
-        usersOrganizationsEntities.add(new UsersOrganizationsEntity(buy.getId(), mag.getId()));
-        usersOrganizationsEntities.add(new UsersOrganizationsEntity(sell.getId(), knopka.getId()));
-        usersOrganizationsRepository.saveAll(usersOrganizationsEntities);
+        UsersOrganizationsEntity uo1 = new UsersOrganizationsEntity();
+        usersOrganizationsRepository.save(uo1);
+        uo1.setUser(admin);
+        uo1.setOrg(rogok);
+        usersOrganizationsRepository.save(uo1);
+
+        UsersOrganizationsEntity uo2 = new UsersOrganizationsEntity();
+        usersOrganizationsRepository.save(uo2);
+        uo2.setUser(buy);
+        uo2.setOrg(mag);
+        usersOrganizationsRepository.save(uo2);
+
+        UsersOrganizationsEntity uo3 = new UsersOrganizationsEntity();
+        usersOrganizationsRepository.save(uo3);
+        uo3.setUser(sell);
+        uo3.setOrg(knopka);
+        usersOrganizationsRepository.save(uo3);
 
         SellersEntity sellersEntity = new SellersEntity();
         sellersRepository.save(sellersEntity);
@@ -167,59 +179,70 @@ public class FillEntity {
         p1.setSellerId(sellersEntity.getId());
         productsRepository.save(p1);
 
-//        ProductsEntity p1 = new ProductsEntity("1", "Молоко", BigDecimal.valueOf(5000), "",
-//                unitsEntity,
-//                productsTypesEntity.getId(),
-//                sellersEntity.getId());
-//        ProductsEntity p2 = new ProductsEntity("2", "Хлеб", BigDecimal.valueOf(230), "",
-//                unitsEntity,
-//                productsTypesEntity.getId(),
-//                sellersEntity.getId());
-//        ProductsEntity p3 = new ProductsEntity("3", "Кефир", BigDecimal.valueOf(7600), "",
-//                unitsEntity,
-//                productsTypesEntity.getId(),
-//                sellersEntity.getId());
-//        ProductsEntity p4 = new ProductsEntity("4", "Кумыс", BigDecimal.valueOf(130), "",
-//                unitsEntity,
-//                productsTypesEntity.getId(),
-//                sellersEntity.getId());
-//        ProductsEntity p5 = new ProductsEntity("5", "Сметана", BigDecimal.valueOf(450), "",
-//                unitsEntity,
-//                productsTypesEntity.getId(),
-//                sellersEntity.getId());
-//        ProductsEntity p6 = new ProductsEntity("6", "Сыр", BigDecimal.valueOf(7890), "",
-//                unitsEntity,
-//                productsTypesEntity.getId(),
-//                sellersEntity.getId());
-//        ProductsEntity p7 = new ProductsEntity("7", "Ряженка", BigDecimal.valueOf(5660), "",
-//                unitsEntity,
-//                productsTypesEntity.getId(),
-//                sellersEntity.getId());
-//        ProductsEntity p8 = new ProductsEntity("8", "Катык", BigDecimal.valueOf(9900), "",
-//                unitsEntity,
-//                productsTypesEntity.getId(),
-//                sellersEntity.getId());
-//
-//        productsEntities.add(p1);
-//        productsEntities.add(p2);
-//        productsEntities.add(p3);
-//        productsEntities.add(p4);
-//        productsEntities.add(p5);
-//        productsEntities.add(p6);
-//        productsEntities.add(p7);
-//        productsEntities.add(p8);
-//        productsRepository.saveAll(productsEntities);
+        ProductsEntity p2 = new ProductsEntity();
+        productsRepository.save(p2);
+        p2.setCode("2");
+        p2.setName("Хлеб");
+        p2.setQuantity(BigDecimal.valueOf(5000));
+        p2.setNote("");
+        p2.setUnit(unitsEntity);
+        p2.setProductTypeId(productsTypesEntity.getId());
+        p2.setSellerId(sellersEntity.getId());
+        productsRepository.save(p2);
 
-//        List<PricesEntity> pricesEntities = new ArrayList<>();
-//        pricesEntities.add(new PricesEntity(BigDecimal.valueOf(45), p1.getId(), pricePatternsEntity.getId()));
-//        pricesEntities.add(new PricesEntity(BigDecimal.valueOf(34), p2.getId(), pricePatternsEntity.getId()));
-//        pricesEntities.add(new PricesEntity(BigDecimal.valueOf(96), p3.getId(), pricePatternsEntity.getId()));
-//        pricesEntities.add(new PricesEntity(BigDecimal.valueOf(23), p4.getId(), pricePatternsEntity.getId()));
-//        pricesEntities.add(new PricesEntity(BigDecimal.valueOf(98), p5.getId(), pricePatternsEntity.getId()));
-//        pricesEntities.add(new PricesEntity(BigDecimal.valueOf(34), p6.getId(), pricePatternsEntity.getId()));
-//        pricesEntities.add(new PricesEntity(BigDecimal.valueOf(90), p7.getId(), pricePatternsEntity.getId()));
-//        pricesEntities.add(new PricesEntity(BigDecimal.valueOf(25), p8.getId(), pricePatternsEntity.getId()));
-//        pricesRepository.saveAll(pricesEntities);
+        ProductsEntity p3 = new ProductsEntity();
+        productsRepository.save(p3);
+        p3.setCode("3");
+        p3.setName("Кефир");
+        p3.setQuantity(BigDecimal.valueOf(5000));
+        p3.setNote("");
+        p3.setUnit(unitsEntity);
+        p3.setProductTypeId(productsTypesEntity.getId());
+        p3.setSellerId(sellersEntity.getId());
+        productsRepository.save(p3);
+
+        ProductsEntity p4 = new ProductsEntity();
+        productsRepository.save(p4);
+        p4.setCode("4");
+        p4.setName("Кумыс");
+        p4.setQuantity(BigDecimal.valueOf(5000));
+        p4.setNote("");
+        p4.setUnit(unitsEntity);
+        p4.setProductTypeId(productsTypesEntity.getId());
+        p4.setSellerId(sellersEntity.getId());
+        productsRepository.save(p4);
+
+        ProductsEntity p5 = new ProductsEntity();
+        productsRepository.save(p5);
+        p5.setCode("5");
+        p5.setName("Сметана");
+        p5.setQuantity(BigDecimal.valueOf(5000));
+        p5.setNote("");
+        p5.setUnit(unitsEntity);
+        p5.setProductTypeId(productsTypesEntity.getId());
+        p5.setSellerId(sellersEntity.getId());
+        productsRepository.save(p5);
+
+        ProductsEntity p6 = new ProductsEntity();
+        productsRepository.save(p6);
+        p6.setCode("6");
+        p6.setName("Сыр");
+        p6.setQuantity(BigDecimal.valueOf(5000));
+        p6.setNote("");
+        p6.setUnit(unitsEntity);
+        p6.setProductTypeId(productsTypesEntity.getId());
+        p6.setSellerId(sellersEntity.getId());
+        productsRepository.save(p6);
+
+
+        List<PricesEntity> pricesEntities = new ArrayList<>();
+        pricesEntities.add(new PricesEntity(BigDecimal.valueOf(45), p1.getId(), pricePatternsEntity.getId()));
+        pricesEntities.add(new PricesEntity(BigDecimal.valueOf(34), p2.getId(), pricePatternsEntity.getId()));
+        pricesEntities.add(new PricesEntity(BigDecimal.valueOf(96), p3.getId(), pricePatternsEntity.getId()));
+        pricesEntities.add(new PricesEntity(BigDecimal.valueOf(23), p4.getId(), pricePatternsEntity.getId()));
+        pricesEntities.add(new PricesEntity(BigDecimal.valueOf(98), p5.getId(), pricePatternsEntity.getId()));
+        pricesEntities.add(new PricesEntity(BigDecimal.valueOf(34), p6.getId(), pricePatternsEntity.getId()));
+        pricesRepository.saveAll(pricesEntities);
 
         LogisticsPointsEntity logis = new LogisticsPointsEntity("point", "Точка обмена", "Бейкер стрит 221", mag.getId());
         logisticsPointsRepository.save(logis);
@@ -303,41 +326,40 @@ public class FillEntity {
 
         OrdersProductsEntity s1 = new OrdersProductsEntity();
         ordersProductsRepository.save(s1);
-        s1.setAmount(BigDecimal.valueOf(12));
-        s1.setPrice(BigDecimal.valueOf(35));
+        s1.setAmount(BigDecimal.valueOf(782));
+        s1.setPrice(BigDecimal.valueOf(92));
         s1.setNote("");
         s1.setOrder(o1);
         s1.setProduct(p1);
         ordersProductsRepository.save(s1);
 
-//        List<OrdersProductsEntity> ordersProductsEntities = new ArrayList<>();
-//        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(12), "", o1, p1.getId()));
-//        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(43), "", o1, p2));
-//        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(32), "", o1, p3));
-//        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(5), "", o1, p4));
-//
-//        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(122), "", o2, p1));
-//        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(433), "", o2, p2));
-//        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(352), "", o2, p3));
-//        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(56), "", o2, p4));
-//
-//        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(912), "", o3, p1));
-//        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(643), "", o3, p2));
-//        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(532), "", o3, p3));
-//        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(35), "", o3, p4));
-//        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(712), "", o3, p5));
-//        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(3), "", o3, p6));
-//        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(92), "", o3, p7));
-//        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(565), "", o3, p8));
-//
-//        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(905), "", o4, p5));
-//        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(7), "", o4, p1));
-//        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(81), "", o4, p4));
-//
-//        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(1), "", o5, p1));
-//        ordersProductsEntities.add(new OrdersProductsEntity(BigDecimal.valueOf(1), "", o5, p3));
+        OrdersProductsEntity s2 = new OrdersProductsEntity();
+        ordersProductsRepository.save(s2);
+        s2.setAmount(BigDecimal.valueOf(902));
+        s2.setPrice(BigDecimal.valueOf(45));
+        s2.setNote("");
+        s2.setOrder(o1);
+        s2.setProduct(p2);
+        ordersProductsRepository.save(s2);
 
-//        ordersProductsRepository.saveAll(ordersProductsEntities);
+        OrdersProductsEntity s3 = new OrdersProductsEntity();
+        ordersProductsRepository.save(s3);
+        s3.setAmount(BigDecimal.valueOf(128));
+        s3.setPrice(BigDecimal.valueOf(635));
+        s3.setNote("");
+        s3.setOrder(o1);
+        s3.setProduct(p3);
+        ordersProductsRepository.save(s3);
+
+        OrdersProductsEntity s4 = new OrdersProductsEntity();
+        ordersProductsRepository.save(s4);
+        s4.setAmount(BigDecimal.valueOf(112));
+        s4.setPrice(BigDecimal.valueOf(325));
+        s4.setNote("");
+        s4.setOrder(o1);
+        s4.setProduct(p4);
+        ordersProductsRepository.save(s4);
+
     }
 
 }

@@ -61,14 +61,14 @@ public class User {
         return newStatusId;
     }
 
-    public UsersEntity create(String email,
-                              String passwordHash,
-                              String name,
-                              Collection<OrganizationsEntity> organizations) {
-        UsersEntity newUser = new UsersEntity(email, passwordHash, name, getNewStatusId(), true);
-        List<UUID> orgIds = organizations.stream().map(x -> x.getId()).collect(Collectors.toList());
-        return repository.save(newUser, orgIds, userOrgRepository);
-    }
+//    public UsersEntity create(String email,
+//                              String passwordHash,
+//                              String name,
+//                              Collection<OrganizationsEntity> organizations) {
+//        UsersEntity newUser = new UsersEntity(email, passwordHash, name, getNewStatusId(), true);
+//        List<UUID> orgIds = organizations.stream().map(x -> x.getId()).collect(Collectors.toList());
+//        return repository.save(newUser, orgIds, userOrgRepository);
+//    }
 
     public UsersEntity get(UUID id) {
         Optional<UsersEntity> user = repository.findById(id);

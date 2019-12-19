@@ -8,12 +8,12 @@ import java.util.UUID;
 @Table(name = "users_organizations", schema = "public", catalog = "postgres")
 public class UsersOrganizationsEntity {
     private UUID id;
-    private UUID userId;
-    private UUID orgId;
+    private UsersEntity user;
+    private OrganizationsEntity org;
 
-    public UsersOrganizationsEntity(UUID userId, UUID orgId) {
-        this.userId = userId;
-        this.orgId = orgId;
+    public UsersOrganizationsEntity(UsersEntity user, OrganizationsEntity org) {
+        this.user = user;
+        this.org = org;
     }
 
     public UsersOrganizationsEntity() {
@@ -31,22 +31,24 @@ public class UsersOrganizationsEntity {
         this.id = id;
     }
 
-    @Column(name = "user_id")
-    public UUID getUserId() {
-        return userId;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "user_id")
+    public UsersEntity getUser() {
+        return user;
     }
 
-    public void setUserId(UUID id) {
-        this.userId = id;
+    public void setUser(UsersEntity user) {
+        this.user = user;
     }
 
-    @Column(name = "org_id")
-    public UUID getOrgId() {
-        return orgId;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "org_id")
+    public OrganizationsEntity getOrg() {
+        return org;
     }
 
-    public void setOrgId(UUID id) {
-        this.orgId = id;
+    public void setOrg(OrganizationsEntity org) {
+        this.org = org;
     }
 
     @Override

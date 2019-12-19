@@ -11,7 +11,7 @@
         <nav th:replace="admin/fragments/navleft :: nav"></nav>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-            <form th:action="@{/saveDataUser}" method="post" >
+            <form th:action="@{/admin/saveDataUser}" method="post" >
                 <div class="container">
                     <table id="MyTable" class="table">
                         <thead>
@@ -21,24 +21,34 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td>Название организации</td>
+                            <td>Логин</td>
                             <td><input th:name="organisation" type="text" placeholder="Заполнить поле"></td>
                         </tr>
                         <tr>
-                            <td>ИНН</td>
+                            <td>Email</td>
                             <td><input th:name="inn"  type="text" placeholder="Заполнить поле"></td>
                         </tr>
                         <tr>
-                            <td>Адрес доставки</td>
+                            <td>ИНН</td>
+                            <td><input th:name="address" type="text" placeholder="Заполнить поле"></td>
+                        </tr>
+
+                        <tr>
+                            <td>Адрес</td>
+                            <td><input th:name="address" type="text" placeholder="Заполнить поле"></td>
+                        </tr>
+
+                        <tr>
+                            <td>Пароль</td>
                             <td><input th:name="address" type="text" placeholder="Заполнить поле"></td>
                         </tr>
 
                         </tbody>
                     </table>
-                    <form th:action="@{/changePassword}" method="post" >
+                    <form th:action="@{/admin/changePassword}" method="post" >
                         <button type="submit">Сменить пароль</button>
                     </form>
-                    <button type="button" onclick="addRow('MyTable')">Добавить адрес</button>
+                    <input type="hidden" name="id" value="86565b0a-4e2c-43d5-9f3c-1557227c7b79" />
                     <button type="submit">Сохранить</button>
                 </div>
             </form>
