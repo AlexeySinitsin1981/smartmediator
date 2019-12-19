@@ -24,7 +24,6 @@ public class OrdersEntity {
     private BuyersEntity buyer;
     private SellersEntity seller;
 
-
     private List<OrdersProductsEntity> products;
 
     public OrdersEntity(

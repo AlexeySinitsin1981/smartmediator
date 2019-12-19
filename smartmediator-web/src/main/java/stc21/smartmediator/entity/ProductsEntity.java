@@ -14,18 +14,18 @@ public class ProductsEntity {
     private BigDecimal quantity;
     private String note;
     private Boolean deleted;
-    private UUID unitId;
+    private UnitsEntity unit;
     private UUID productTypeId;
     private UUID sellerId;
 
     public ProductsEntity(
-            String code, String name, BigDecimal quantity, String note, UUID unitId, UUID productTypeId, UUID sellerId) {
+            String code, String name, BigDecimal quantity, String note, UnitsEntity unit, UUID productTypeId, UUID sellerId) {
         this.code = code;
         this.name = name;
         this.quantity = quantity;
         this.note = note;
         this.deleted = false;
-        this.unitId = unitId;
+        this.unit = unit;
         this.productTypeId = productTypeId;
         this.sellerId = sellerId;
     }
@@ -95,13 +95,14 @@ public class ProductsEntity {
         this.deleted = deleted;
     }
 
-    @Column(name="unit_id")
-    public UUID getUnitId() {
-        return unitId;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "unit_id")
+    public UnitsEntity getUnit() {
+        return unit;
     }
 
-    public void setUnitId(UUID unitId) {
-        this.unitId = unitId;
+    public void setUnit(UnitsEntity unit) {
+        this.unit = unit;
     }
 
     @Column(name = "products_type_id")

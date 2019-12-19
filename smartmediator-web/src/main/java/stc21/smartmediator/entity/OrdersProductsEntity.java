@@ -10,17 +10,18 @@ import java.util.UUID;
 public class OrdersProductsEntity {
     private UUID id;
     private BigDecimal amount;
+    private BigDecimal price;
     private String note;
-    private UUID productId;
 
+    private ProductsEntity product;
     private OrdersEntity order;
 
-
-    public OrdersProductsEntity(BigDecimal amount, String note, OrdersEntity order, UUID productId) {
+    public OrdersProductsEntity(BigDecimal amount, BigDecimal price, String note, OrdersEntity order, ProductsEntity product) {
         this.amount = amount;
+        this.price = price;
         this.note = note;
         this.order = order;
-        this.productId = productId;
+        this.product = product;
     }
 
     public OrdersProductsEntity() {
@@ -36,6 +37,26 @@ public class OrdersProductsEntity {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "product_id")
+    public ProductsEntity getProduct() {
+        return product;
+    }
+
+    public void setProduct(ProductsEntity product) {
+        this.product = product;
+    }
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "order_id")
+    public OrdersEntity getOrder() {
+        return order;
+    }
+
+    public void setOrder(OrdersEntity order) {
+        this.order = order;
     }
 
     @Basic
@@ -58,23 +79,14 @@ public class OrdersProductsEntity {
         this.note = note;
     }
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "order_id")
-    public OrdersEntity getOrder() {
-        return order;
+    @Basic
+    @Column(name = "price")
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setOrder(OrdersEntity order) {
-        this.order = order;
-    }
-
-    @Column(name = "product_id")
-    public UUID getProductId() {
-        return productId;
-    }
-
-    public void setProductId(UUID value) {
-        this.productId = value;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     @Override

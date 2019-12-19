@@ -39,7 +39,7 @@ public class Product {
                                  ProductsTypesEntity productType,
                                  SellersEntity seller) {
         ProductsEntity product = new ProductsEntity(
-                code, name, address, note, unit.getId(), productType.getId(), seller.getId());
+                code, name, address, note, unit, productType.getId(), seller.getId());
         return repository.save(product);
     }
 

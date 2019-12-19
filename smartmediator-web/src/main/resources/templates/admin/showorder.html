@@ -52,11 +52,12 @@
                     <tbody>
                     <th:block th:each="product : ${order.getProducts()}">
                         <tr>
-                            <td>Ania</td>
-                            <td>Doe</td>
-                            <td>Бахетле</td>
-                            <td>Бахетле</td>
-                            <td>Бахетле</td>
+                            <td th:utext="${product.getProduct().getName()}">..</td>
+                            <td th:utext="${product.getProduct().getUnit().getName()}">..</td>
+                            <td th:utext="${product.getPrice()}">..</td>
+                            <td th:utext="${product.getAmount()}">..</td>
+                            <td th:utext="${#numbers.formatDecimal(product.getPrice() * product.getAmount(),3,2)}">..
+                            </td>
                         </tr>
                     </th:block>
                     </tbody>

@@ -6,6 +6,7 @@ CREATE TABLE orders_products
     order_id   UUID           NULL,
     product_id UUID           NULL,
     amount     decimal(15, 3) NULL CHECK (amount > 0),
+    price      decimal(15, 2) NULL CHECK (amount > 0),
     note       TEXT           NULL                 DEFAULT '',
     CONSTRAINT pk_orders_products UNIQUE (id),
     CONSTRAINT fk_orders_products_orders FOREIGN KEY (order_id) REFERENCES orders (id)
