@@ -9,6 +9,7 @@ CREATE TABLE products
     products_type_id UUID           NULL,
     seller_id        UUID           NULL,
     quantity         decimal(20, 3) NULL CHECK (quantity >= 0),
+    price            decimal(20, 2) NULL CHECK (price >= 0),
     note             TEXT           NULL                 DEFAULT '',
     deleted          boolean,
     CONSTRAINT pk_products UNIQUE (id),

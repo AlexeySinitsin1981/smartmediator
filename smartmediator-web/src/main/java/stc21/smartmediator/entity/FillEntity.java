@@ -177,6 +177,7 @@ public class FillEntity {
         p1.setUnit(unitsEntity);
         p1.setProductTypeId(productsTypesEntity.getId());
         p1.setSellerId(sellersEntity.getId());
+        p1.setPrice(BigDecimal.valueOf(34));
         productsRepository.save(p1);
 
         ProductsEntity p2 = new ProductsEntity();
@@ -188,6 +189,7 @@ public class FillEntity {
         p2.setUnit(unitsEntity);
         p2.setProductTypeId(productsTypesEntity.getId());
         p2.setSellerId(sellersEntity.getId());
+        p2.setPrice(BigDecimal.valueOf(75));
         productsRepository.save(p2);
 
         ProductsEntity p3 = new ProductsEntity();
@@ -199,6 +201,7 @@ public class FillEntity {
         p3.setUnit(unitsEntity);
         p3.setProductTypeId(productsTypesEntity.getId());
         p3.setSellerId(sellersEntity.getId());
+        p3.setPrice(BigDecimal.valueOf(94));
         productsRepository.save(p3);
 
         ProductsEntity p4 = new ProductsEntity();
@@ -210,6 +213,7 @@ public class FillEntity {
         p4.setUnit(unitsEntity);
         p4.setProductTypeId(productsTypesEntity.getId());
         p4.setSellerId(sellersEntity.getId());
+        p4.setPrice(BigDecimal.valueOf(534));
         productsRepository.save(p4);
 
         ProductsEntity p5 = new ProductsEntity();
@@ -221,6 +225,7 @@ public class FillEntity {
         p5.setUnit(unitsEntity);
         p5.setProductTypeId(productsTypesEntity.getId());
         p5.setSellerId(sellersEntity.getId());
+        p5.setPrice(BigDecimal.valueOf(999));
         productsRepository.save(p5);
 
         ProductsEntity p6 = new ProductsEntity();
@@ -232,6 +237,7 @@ public class FillEntity {
         p6.setUnit(unitsEntity);
         p6.setProductTypeId(productsTypesEntity.getId());
         p6.setSellerId(sellersEntity.getId());
+        p6.setPrice(BigDecimal.valueOf(500));
         productsRepository.save(p6);
 
 

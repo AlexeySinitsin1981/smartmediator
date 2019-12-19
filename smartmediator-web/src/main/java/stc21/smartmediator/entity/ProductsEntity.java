@@ -17,6 +17,7 @@ public class ProductsEntity {
     private UnitsEntity unit;
     private UUID productTypeId;
     private UUID sellerId;
+    private BigDecimal price;
 
     public ProductsEntity(
             String code, String name, BigDecimal quantity, String note, UnitsEntity unit, UUID productTypeId, UUID sellerId) {
@@ -43,6 +44,14 @@ public class ProductsEntity {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     @Basic

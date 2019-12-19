@@ -24,7 +24,6 @@ public class WorkController {
 //        return "redirect:/orders";
 //    }
 
-
 //    @GetMapping("/bids")
 //    public String bids(Map<String, Object> model) {
 //

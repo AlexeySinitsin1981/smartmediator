@@ -10,4 +10,5 @@ import java.util.UUID;
 @Repository
 public interface OrderStatusesRepository extends JpaRepository<OrderStatusesEntity, UUID> {
 
+    OrderStatusesEntity findByCode(String aNew);
 }
