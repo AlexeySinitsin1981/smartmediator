@@ -1,73 +1,122 @@
-
 <!doctype html>
-<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="">
 <head th:replace="buyer/fragments/head :: head"></head>
 <body>
-<nav th:replace="admin/fragments/navup :: nav"></nav>
-
-<div class="container-fluid">
-    <div class="row">
-        <nav th:replace="buyer/fragments/navleft :: nav"></nav>
-
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-            <div class="container">
-
-
-                <h2>Заказы</h2>
-                <div class="inline">
-                    <select>
-                        <option disabled selected>Поставщик</option>
-                        <option value="Бахетле">Бахетле</option>
-                        <option value="Магнит">Магнит</option>
-                    </select>
-                    <select>
-                        <option disabled selected>Адрес доставки</option>
-                        <option value="Бахетле">Бахетле</option>
-                        <option value="Магнит">Магнит</option>
-                    </select>
-                    <input type="date">
-<br>
-                    <form th:action="@{/takeDataOfOrder}" method="get" >
-                        <button type="button">Выбрать</button>
-                    </form>
-                    <br>
-                </div>
-
-
-                <h2>Действующие поставщики</h2>
-                <table class="table table-bordered table-striped">
-                    <thead>
-                    <tr>
-                        <th>Товар</th>
-                        <th>Цена</th>
-                        <th>Количество</th>
-                        <th>Максимальное количество</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr >
-                        <th>Трава</th>
-                        <th>150</th>
-                        <th><input type="number" min="0"></th>
-                        <th >5</th>
-                    </tr>
-                    <tr >
-                        <th>Трава</th>
-                        <th>150</th>
-                        <th><input type="number" min="0"></th>
-                        <th>5</th>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </main>
+<nav th:replace="buyer/fragments/nav :: nav"></nav>
+<main role="main" class="container">
+    <div class="container">
+        <!--                <form th:action="@{/listOfOrders}" method="post" >-->
+        <!--                    <div class="form-group">-->
+        <!--                        <label for="usr">С даты</label>-->
+        <!--                        <input type="date" class="form-control" id="usr">-->
+        <!--                    </div>-->
+        <!--                    <div class="form-group">-->
+        <!--                        <label for="pwd">По дату</label>-->
+        <!--                        <input type="date" class="form-control" id="pwd">-->
+        <!--                    </div>-->
+        <!--                    <button type="submit">Поиск заказов</button>-->
+        <!--                </form>-->
+        <h2>Заказы</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <td>№ Заказа</td>
+                <td>Дата</td>
+                <td>Поставщик</td>
+                <td>Покупатель</td>
+                <td>Сумма</td>
+                <td>Статус</td>
+            </tr>
+            </thead>
+            <tbody id="myTable">
+            <th:block th:each="order : ${orders}">
+                <tr>
+                    <td>
+                        <a th:href="@{'/byuer/orders/' + ${order.getId()}}"
+                           th:utext="${order.getNumber()}">..</a>
+                    </td>
+                    <td th:utext="${{order.getCreateDate()}}">..</td>
+                    <td th:utext="${order.getSeller().getOrg().name}">..</td>
+                    <td th:utext="${order.getBuyer().getOrg().name}">..</td>
+                    <td th:utext="${order.getPrice()}">..</td>
+                    <td th:utext="${order.getStatus().name}">..</td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
     </div>
-</div>
-<footer th:replace="admin/fragments/footer :: footer"></footer>
 
-
-
+</main>
+<footer th:replace="buyer/fragments/footer :: footer"></footer>
 </body>
 </html>
+
+<!--<!doctype html>-->
+<!--<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head th:replace="buyer/fragments/head :: head"></head>-->
+<!--<body>-->
+<!--<nav th:replace="admin/fragments/navup :: nav"></nav>-->
+
+<!--<div class="container-fluid">-->
+<!--    <div class="row">-->
+<!--        <nav th:replace="buyer/fragments/navleft :: nav"></nav>-->
+
+<!--        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">-->
+<!--            <div class="container">-->
+
+
+<!--                <h2>Заказы</h2>-->
+<!--                <div class="inline">-->
+<!--                    <select>-->
+<!--                        <option disabled selected>Поставщик</option>-->
+<!--                        <option value="Бахетле">Бахетле</option>-->
+<!--                        <option value="Магнит">Магнит</option>-->
+<!--                    </select>-->
+<!--                    <select>-->
+<!--                        <option disabled selected>Адрес доставки</option>-->
+<!--                        <option value="Бахетле">Бахетле</option>-->
+<!--                        <option value="Магнит">Магнит</option>-->
+<!--                    </select>-->
+<!--                    <input type="date">-->
+<!--<br>-->
+<!--                    <form th:action="@{/takeDataOfOrder}" method="get" >-->
+<!--                        <button type="button">Выбрать</button>-->
+<!--                    </form>-->
+<!--                    <br>-->
+<!--                </div>-->
+
+
+<!--                <h2>Действующие поставщики</h2>-->
+<!--                <table class="table table-bordered table-striped">-->
+<!--                    <thead>-->
+<!--                    <tr>-->
+<!--                        <th>Товар</th>-->
+<!--                        <th>Цена</th>-->
+<!--                        <th>Количество</th>-->
+<!--                        <th>Максимальное количество</th>-->
+<!--                    </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                    <tr >-->
+<!--                        <th>Трава</th>-->
+<!--                        <th>150</th>-->
+<!--                        <th><input type="number" min="0"></th>-->
+<!--                        <th >5</th>-->
+<!--                    </tr>-->
+<!--                    <tr >-->
+<!--                        <th>Трава</th>-->
+<!--                        <th>150</th>-->
+<!--                        <th><input type="number" min="0"></th>-->
+<!--                        <th>5</th>-->
+<!--                    </tr>-->
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--            </div>-->
+
+<!--        </main>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<footer th:replace="admin/fragments/footer :: footer"></footer>-->
+<!--</body>-->
+<!--</html>-->

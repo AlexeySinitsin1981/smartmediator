@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Controller
-@PreAuthorize("hasAuthority('ADMIN')")
+//@PreAuthorize("hasAuthority('ADMIN')")
 public class AdminController {
 
     @Autowired

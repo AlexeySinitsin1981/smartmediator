@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ru" xmlns:th="">
+<head th:replace="buyer/fragments/head :: head"></head>
+<body>
+<nav th:replace="buyer/fragments/nav :: nav"></nav>
+<main role="main" class="container">
+    <div class="starter-template">
+        <h1>Страница Заявок</h1>
+    </div>
+</main>
+<footer th:replace="buyer/fragments/footer :: footer"></footer>
+</body>
+</html>
+
+<!--<!doctype html>-->
+<!--<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head th:replace="buyer/fragments/head :: head"></head>-->
+<!--<body>-->
+<!--<nav th:replace="admin/fragments/navup :: nav"></nav>-->
+
+<!--<div class="container-fluid">-->
+<!--    <div class="row">-->
+<!--        <nav th:replace="buyer/fragments/navleft :: nav"></nav>-->
+
+<!--        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">-->
+<!--            <div class="container">-->
+
+
+<!--                <h2>Заказы</h2>-->
+<!--                <div class="inline">-->
+<!--                    <select>-->
+<!--                        <option disabled selected>Поставщик</option>-->
+<!--                        <option value="Бахетле">Бахетле</option>-->
+<!--                        <option value="Магнит">Магнит</option>-->
+<!--                    </select>-->
+<!--                    <select>-->
+<!--                        <option disabled selected>Адрес доставки</option>-->
+<!--                        <option value="Бахетле">Бахетле</option>-->
+<!--                        <option value="Магнит">Магнит</option>-->
+<!--                    </select>-->
+<!--                    <input type="date">-->
+<!--<br>-->
+<!--                    <form th:action="@{/takeDataOfOrder}" method="get" >-->
+<!--                        <button type="button">Выбрать</button>-->
+<!--                    </form>-->
+<!--                    <br>-->
+<!--                </div>-->
+
+
+<!--                <h2>Действующие поставщики</h2>-->
+<!--                <table class="table table-bordered table-striped">-->
+<!--                    <thead>-->
+<!--                    <tr>-->
+<!--                        <th>Товар</th>-->
+<!--                        <th>Цена</th>-->
+<!--                        <th>Количество</th>-->
+<!--                        <th>Максимальное количество</th>-->
+<!--                    </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                    <tr >-->
+<!--                        <th>Трава</th>-->
+<!--                        <th>150</th>-->
+<!--                        <th><input type="number" min="0"></th>-->
+<!--                        <th >5</th>-->
+<!--                    </tr>-->
+<!--                    <tr >-->
+<!--                        <th>Трава</th>-->
+<!--                        <th>150</th>-->
+<!--                        <th><input type="number" min="0"></th>-->
+<!--                        <th>5</th>-->
+<!--                    </tr>-->
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--            </div>-->
+
+<!--        </main>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<footer th:replace="admin/fragments/footer :: footer"></footer>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+<!--<!doctype html>-->
+<!--<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--&lt;!&ndash;<head th:replace="buyer/fragments/head :: head"></head>&ndash;&gt;-->
+<!--<body>-->
+<!--&lt;!&ndash;<nav th:replace="buyer/fragments/navup :: nav"></nav>&ndash;&gt;-->
+
+<!--<div class="container-fluid">-->
+<!--    <div class="row">-->
+<!--&lt;!&ndash;        <nav th:replace="buyer/fragments/navleft :: nav"></nav>&ndash;&gt;-->
+
+<!--        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">-->
+
+<!--            <div class="starter-template">-->
+<!--                <h1>Страница Заявок</h1>-->
+<!--            </div>-->
+
+<!--&lt;!&ndash;            <form th:action="@{/saveDataUser}" method="post" >&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="container">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <table id="MyTable" class="table">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <thead>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <tr>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                        </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </thead>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <td>Название организации</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <td><input th:name="organisation" type="text" placeholder="Заполнить поле"></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <td>ИНН</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <td><input th:name="inn"  type="text" placeholder="Заполнить поле"></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <td>Адрес доставки</td>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <td><input th:name="address" type="text" placeholder="Заполнить поле"></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </tr>&ndash;&gt;-->
+
+<!--&lt;!&ndash;                        </tbody>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </table>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <form th:action="@{/changePassword}" method="post" >&ndash;&gt;-->
+<!--&lt;!&ndash;                        <button type="submit">Сменить пароль</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </form>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <button type="button" onclick="addRow('MyTable')">Добавить адрес</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <button type="submit">Сохранить</button>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </form>&ndash;&gt;-->
+<!--        </main>-->
+<!--    </div>-->
+<!--</div>-->
+<!--&lt;!&ndash;<footer th:replace="admin/fragments/footer :: footer"></footer>&ndash;&gt;-->
+
+
+
+<!--</body>-->
+<!--</html>-->

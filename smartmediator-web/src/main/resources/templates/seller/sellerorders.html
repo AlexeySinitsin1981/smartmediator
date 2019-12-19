@@ -1,67 +1,118 @@
-
 <!doctype html>
-<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="">
 <head th:replace="seller/fragments/head :: head"></head>
 <body>
-<nav th:replace="admin/fragments/navup :: nav"></nav>
-
-<div class="container-fluid">
-    <div class="row">
-        <nav th:replace="seller/fragments/navleft :: nav"></nav>
-
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-            <div class="container">
-                <form th:action="@{/listOfOrders}" method="post" >
-                    <div class="form-group">
-                        <label for="usr">С даты</label>
-                        <input type="date" class="form-control" id="usr">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">По дату</label>
-                        <input type="date" class="form-control" id="pwd">
-                    </div>
-                    <button type="submit">Поиск заказов</button>
-                </form>
-                <h2>Заказы</h2>
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <td>№ Заказа</td>
-                        <td>Время заказа</td>
-                        <td>Заказчик</td>
-                        <td>Адрес заказа</td>
-                        <td>Сумма заказа</td>
-                        <td>Статус</td>
-                    </tr>
-                    </thead>
-                    <tbody id="myTable">
-                    <tr >
-                        <td>123</td>
-                        <td>Ромашка</td>
-                        <td >Люберцы</td>
-                        <td id="date1" type="date">24.11.2017</td>
-                        <td>5000</td>
-                        <td>Получен</td>
-                    </tr>
-                    <tr >
-                        <td>143</td>
-                        <td>Василек</td>
-                        <td >Москва</td>
-                        <td id="date2" type="date">24.11.2017</td>
-                        <td>3000</td>
-                        <td>В работе</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </main>
+<nav th:replace="seller/fragments/nav :: nav"></nav>
+<main role="main" class="container">
+    <div class="container">
+        <!--                <form th:action="@{/listOfOrders}" method="post" >-->
+        <!--                    <div class="form-group">-->
+        <!--                        <label for="usr">С даты</label>-->
+        <!--                        <input type="date" class="form-control" id="usr">-->
+        <!--                    </div>-->
+        <!--                    <div class="form-group">-->
+        <!--                        <label for="pwd">По дату</label>-->
+        <!--                        <input type="date" class="form-control" id="pwd">-->
+        <!--                    </div>-->
+        <!--                    <button type="submit">Поиск заказов</button>-->
+        <!--                </form>-->
+        <h2>Заказы</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <td>№ Заказа</td>
+                <td>Дата</td>
+                <td>Поставщик</td>
+                <td>Покупатель</td>
+                <td>Сумма</td>
+                <td>Статус</td>
+            </tr>
+            </thead>
+            <tbody id="myTable">
+            <th:block th:each="order : ${orders}">
+                <tr>
+                    <td>
+                        <a th:href="@{'/seller/orders/' + ${order.getId()}}"
+                           th:utext="${order.getNumber()}">..</a>
+                    </td>
+                    <td th:utext="${{order.getCreateDate()}}">..</td>
+                    <td th:utext="${order.getSeller().getOrg().name}">..</td>
+                    <td th:utext="${order.getBuyer().getOrg().name}">..</td>
+                    <td th:utext="${order.getPrice()}">..</td>
+                    <td th:utext="${order.getStatus().name}">..</td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
     </div>
-</div>
-<footer th:replace="admin/fragments/footer :: footer"></footer>
 
-
-
+</main>
+<footer th:replace="seller/fragments/footer :: footer"></footer>
 </body>
 </html>
+
+<!--<!doctype html>-->
+<!--<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head th:replace="seller/fragments/head :: head"></head>-->
+<!--<body>-->
+<!--<nav th:replace="admin/fragments/navup :: nav"></nav>-->
+
+<!--<div class="container-fluid">-->
+<!--    <div class="row">-->
+<!--        <nav th:replace="seller/fragments/navleft :: nav"></nav>-->
+
+<!--        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">-->
+<!--            <div class="container">-->
+<!--                <form th:action="@{/listOfOrders}" method="post" >-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="usr">С даты</label>-->
+<!--                        <input type="date" class="form-control" id="usr">-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label for="pwd">По дату</label>-->
+<!--                        <input type="date" class="form-control" id="pwd">-->
+<!--                    </div>-->
+<!--                    <button type="submit">Поиск заказов</button>-->
+<!--                </form>-->
+<!--                <h2>Заказы</h2>-->
+<!--                <table class="table">-->
+<!--                    <thead>-->
+<!--                    <tr>-->
+<!--                        <td>№ Заказа</td>-->
+<!--                        <td>Время заказа</td>-->
+<!--                        <td>Заказчик</td>-->
+<!--                        <td>Адрес заказа</td>-->
+<!--                        <td>Сумма заказа</td>-->
+<!--                        <td>Статус</td>-->
+<!--                    </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody id="myTable">-->
+<!--                    <tr >-->
+<!--                        <td>123</td>-->
+<!--                        <td>Ромашка</td>-->
+<!--                        <td >Люберцы</td>-->
+<!--                        <td id="date1" type="date">24.11.2017</td>-->
+<!--                        <td>5000</td>-->
+<!--                        <td>Получен</td>-->
+<!--                    </tr>-->
+<!--                    <tr >-->
+<!--                        <td>143</td>-->
+<!--                        <td>Василек</td>-->
+<!--                        <td >Москва</td>-->
+<!--                        <td id="date2" type="date">24.11.2017</td>-->
+<!--                        <td>3000</td>-->
+<!--                        <td>В работе</td>-->
+<!--                    </tr>-->
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--            </div>-->
+
+<!--        </main>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<footer th:replace="admin/fragments/footer :: footer"></footer>-->
+
+
+<!--</body>-->
+<!--</html>-->

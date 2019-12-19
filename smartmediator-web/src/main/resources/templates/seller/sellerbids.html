@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ru" xmlns:th="">
+<head th:replace="seller/fragments/head :: head"></head>
+<body>
+<nav th:replace="seller/fragments/nav :: nav"></nav>
+<main role="main" class="container">
+    <div class="starter-template">
+        <div class="container">
+            <h2>Заявки</h2>
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Покупатель</th>
+                    <th>Адрес</th>
+                    <th>Тип цен</th>
+                    <th>Утвердить</th>
+                    <th>Отказать</th>
+                </tr>
+                </thead>
+                <tbody id="myTable">
+                <tr>
+
+                    <td>Ania</td>
+                    <td>Doe</td>
+                    <td><select th:name="type" class="form-control">
+                        <option>Бахетле</option>
+                        <option>Магнит</option>
+                    </select></td>
+                    <td>
+                        <form th:action="@{/approveRequest}" method="get">
+                            <button type="submit">Одобрить</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form th:action="@{/disapproveRequest}" method="post">
+                            <button type="button" onclick="deleteRow(this)">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>Ania</td>
+                    <td>Doe</td>
+                    <td><select th:name="type" class="form-control">
+                        <option>Бахетле</option>
+                        <option>Магнит</option>
+                    </select></td>
+                    <td>
+                        <form th:action="@{/approveRequest}" method="get">
+                            <button type="submit">Одобрить</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form th:action="@{/disapproveRequest}" method="post">
+                            <button type="button" onclick="deleteRow(this)">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <h2>Покупатели</h2>
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Покупатель</th>
+                    <th>Адрес</th>
+                    <th>Тип цен</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+
+                    <td>Ania</td>
+                    <td>Doe</td>
+                    <td>Бахетле</td>
+                </tr>
+                <tr>
+                    <td>Ania</td>
+                    <td>Doe</td>
+                    <td>Бахетле</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</main>
+<footer th:replace="seller/fragments/footer :: footer"></footer>
+</body>
+</html>
