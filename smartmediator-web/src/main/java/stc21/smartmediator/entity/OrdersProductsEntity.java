@@ -11,15 +11,15 @@ public class OrdersProductsEntity {
     private UUID id;
     private BigDecimal amount;
     private String note;
-
-    @Column(name = "order_id")
-    private UUID orderId;
     private UUID productId;
 
-    public OrdersProductsEntity(BigDecimal amount, String note, UUID orderId, UUID productId) {
+    private OrdersEntity order;
+
+
+    public OrdersProductsEntity(BigDecimal amount, String note, OrdersEntity order, UUID productId) {
         this.amount = amount;
         this.note = note;
-        this.orderId = orderId;
+        this.order = order;
         this.productId = productId;
     }
 
@@ -58,12 +58,14 @@ public class OrdersProductsEntity {
         this.note = note;
     }
 
-    public UUID getOrderId() {
-        return orderId;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "order_id")
+    public OrdersEntity getOrder() {
+        return order;
     }
 
-    public void setOrderId(UUID value) {
-        this.orderId = value;
+    public void setOrder(OrdersEntity order) {
+        this.order = order;
     }
 
     @Column(name = "product_id")

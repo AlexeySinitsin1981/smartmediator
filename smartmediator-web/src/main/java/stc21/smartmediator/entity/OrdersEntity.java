@@ -24,7 +24,7 @@ public class OrdersEntity {
     private BuyersEntity buyer;
     private SellersEntity seller;
 
-    @OneToMany(mappedBy = "orderId", fetch = FetchType.EAGER)
+
     private List<OrdersProductsEntity> products;
 
     public OrdersEntity(
@@ -61,6 +61,7 @@ public class OrdersEntity {
         this.id = id;
     }
 
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
     public List<OrdersProductsEntity> getProducts() {
         return products;
     }
