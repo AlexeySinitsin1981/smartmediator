@@ -1,14 +1,28 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<div th:replace="fragments/head :: head"></div>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Please sign in</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"/>
+</head>
 <body>
-<main role="main" class="flex-shrink-0">
-    <div class="container">
-        <h1 class="mt-5">Sticky footer</h1>
-        <p class="lead">Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.</p>
-        <p>Use <p>Click <a th:href="@{/login}">here</a> to see a greeting.</p> if need be, too.</p>
-    </div>
-</main>
+<div class="container">
+    <h2>Добро пожаловать в систему SmartMediator</h2>
+
+    <h4><a th:href="@{'/login'}"
+           th:utext="Авторизоваться">..</a></h4>
+    <h4><a th:href="@{'/admin'}"
+           th:utext="Администратор">..</a></h4>
+    <h4><a th:href="@{'/seller'}"
+           th:utext="Поставщик">..</a></h4>
+    <h4><a th:href="@{'/buyer'}"
+           th:utext="Покупатель">..</a></h4>
+
+</div>
 </body>
 </html>

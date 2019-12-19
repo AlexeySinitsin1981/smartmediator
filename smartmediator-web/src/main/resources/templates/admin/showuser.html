@@ -1,0 +1,54 @@
+
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments/head :: head"></head>
+<body>
+<nav th:replace="admin/fragments/navup :: nav"></nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav th:replace="seller/fragments/navleft :: nav"></nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <form th:action="@{/saveDataUser}" method="post" >
+                <div class="container">
+                    <table id="MyTable" class="table">
+                        <thead>
+                        <tr>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Название организации</td>
+                            <td><input th:name="organisation" type="text" placeholder="Заполнить поле"></td>
+                        </tr>
+                        <tr>
+                            <td>ИНН</td>
+                            <td><input th:name="inn"  type="text" placeholder="Заполнить поле"></td>
+                        </tr>
+                        <tr>
+                            <td>Адрес доставки</td>
+                            <td><input th:name="address" type="text" placeholder="Заполнить поле"></td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                    <form th:action="@{/changePassword}" method="post" >
+                        <button type="submit">Сменить пароль</button>
+                    </form>
+                    <button type="button" onclick="addRow('MyTable')">Добавить адрес</button>
+                    <button type="submit">Сохранить</button>
+                </div>
+            </form>
+
+        </main>
+    </div>
+</div>
+<footer th:replace="admin/fragments/footer :: footer"></footer>
+
+
+
+</body>
+</html>

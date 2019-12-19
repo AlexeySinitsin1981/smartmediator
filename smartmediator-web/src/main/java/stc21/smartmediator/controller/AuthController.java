@@ -14,12 +14,6 @@ public class AuthController {
         return "hello";
     }
 
-    @GetMapping("/home")
-    public String home(Map<String, Object> model) {
-
-        return "home";
-    }
-
     @GetMapping("/login")
     public String login(Map<String, Object> model) {
 

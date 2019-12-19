@@ -6,7 +6,7 @@ import stc21.smartmediator.repository.UsersRolesRepository;
 
 @Service
 public class UsersRolesServiceImpl implements UsersRolesService {
-//public class UsersRolesServiceImpl {
+
 
     @Autowired
     private UsersRolesRepository repository;

@@ -4,10 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import stc21.smartmediator.entity.OrdersEntity;
 import stc21.smartmediator.entity.UsersEntity;
 import stc21.smartmediator.repository.RolesRepository;
 import stc21.smartmediator.repository.UsersRepository;
 import stc21.smartmediator.repository.UserStatusesRepository;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -23,6 +28,15 @@ public class UserServiceImpl implements UserService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UsersEntity user = repository.findByUsername(username);
         return user;
+    }
+
+    public List findAll() {
+        return repository.findAll();
+    }
+
+    public UsersEntity findById(UUID id) {
+        Optional<UsersEntity> user = repository.findById(id);
+        return user.orElse(null);
     }
 
 //    @Override

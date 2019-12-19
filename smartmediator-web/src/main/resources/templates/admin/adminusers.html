@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="admin/fragments/head :: head"></head>
+<body>
+<nav th:replace="admin/fragments/navup :: nav"></nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <nav th:replace="admin/fragments/navleft :: nav"></nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="container">
+                <h2>Пользователи &nbsp;&nbsp;&nbsp;<a th:href="@{'/admin/users/create'}"
+                                                      th:utext="Добавить">..</a></h2>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th>ФИО</th>
+                        <th>Роль</th>
+                        <th>ИНН</th>
+                        <th>Email</th>
+                        <th>Адрес</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <th:block th:each="user : ${users}">
+                        <tr>
+                            <td><a th:href="@{'/admin/users/' + ${user.getId()}}"
+                                   th:utext="${user.getUsername()}">..</a></td>
+                            <td th:utext="${{user.getEmail()}}">..</td>
+                            <td th:utext="${{user.getEmail()}}">..</td>
+                            <td th:utext="${{user.getEmail()}}">..</td>
+                            <td th:utext="${{user.getEmail()}}">..</td>
+                        </tr>
+                    </th:block>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</div>
+<footer th:replace="admin/fragments/footer :: footer"></footer>
+</body>
+</html>

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import stc21.smartmediator.entity.OrdersEntity;
 import stc21.smartmediator.repository.OrdersRepository;
+import stc21.smartmediator.repository.UsersRepository;
 
 import java.util.List;
 import java.util.Optional;
