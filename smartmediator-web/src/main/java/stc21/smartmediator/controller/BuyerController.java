@@ -9,16 +9,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import stc21.smartmediator.dto.ListOfOrders;
 import stc21.smartmediator.dto.Order;
 import stc21.smartmediator.entity.*;
-import stc21.smartmediator.repository.OrderStatusesRepository;
-import stc21.smartmediator.repository.OrdersRepository;
-import stc21.smartmediator.repository.SellersRepository;
+import stc21.smartmediator.repository.*;
 import stc21.smartmediator.service.OrdersServiceImpl;
 import stc21.smartmediator.service.ProductServiceImpl;
 import stc21.smartmediator.service.SellersServiceImp;
 
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.util.*;
 
 @Controller
 //@PreAuthorize("hasAuthority('BUYER')")
@@ -30,23 +28,37 @@ public class BuyerController {
 
     private final OrderStatusesRepository orderStatusesRepository;
 
+    private final OrganizationsRepository organizationsRepository;
+
+    private final OrdersProductsRepository ordersProductsRepository;
+
     @Autowired
     private OrdersServiceImpl service;
 
     @Autowired
     private SellersServiceImp sellerService;
 
-
-
-
-
     @Autowired
     private ProductServiceImpl productService;
 
-    public BuyerController(OrdersRepository ordersRepository, SellersRepository sellersRepository, OrderStatusesRepository orderStatusesRepository) {
+    @Autowired
+    BuyersRepository buyersRepository;
+
+    @Autowired
+    DeliveryTypesRepository deliveryTypesRepository;
+
+    @Autowired
+    PricePatternsRepository pricePatternsRepository;
+
+    @Autowired
+    LogisticsPointsRepository logisticsPointsRepository;
+
+    public BuyerController(OrdersRepository ordersRepository, SellersRepository sellersRepository, OrderStatusesRepository orderStatusesRepository, OrganizationsRepository organizationsRepository, OrdersProductsRepository ordersProductsRepository) {
         this.ordersRepository = ordersRepository;
         this.sellersRepository = sellersRepository;
         this.orderStatusesRepository = orderStatusesRepository;
+        this.organizationsRepository = organizationsRepository;
+        this.ordersProductsRepository = ordersProductsRepository;
     }
 
     @GetMapping("/buyer")
@@ -83,10 +95,11 @@ public class BuyerController {
         model.put("sellers", sellersEntities);
         ListOfOrders listOfOrders;
 
-
         if ("yes".equals(yes)) {
 
-            OrderStatusesEntity oNew = orderStatusesRepository.findByCode("new");
+//            OrderStatusesEntity oNew = orderStatusesRepository.findByCode("new");
+//            Optional<OrganizationsEntity> ogrRog = organizationsRepository.findByInn("1234599999011450");
+//            SellersEntity seeee = (SellersEntity) sellersRepository.findByOrgId(ogrRog.get().getId());
 
 //            OrderStatusesEntity oNew = new OrderStatusesEntity("new", "Новый");
 //            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -109,12 +122,12 @@ public class BuyerController {
 //            sellersRepository.save(sellersEntity);
 
 
-            for (Order order : listOfOrdersv.getOrders()) {
-                OrdersEntity o1 = new OrdersEntity();
-                ordersRepository.save(o1);
-                o1.setStatus(oNew);
+//            for (Order order : listOfOrdersv.getOrders()) {
+//                OrdersEntity o1 = new OrdersEntity();
+//                ordersRepository.save(o1);
+//                o1.setStatus(oNew);
 //                o1.setBuyer((BuyersEntity) principal);
-//                o1.setSeller(sellersEntity);
+//                o1.setSeller(seeee);
 //                o1.setDeliveryTypeId(supply.getId());
 //                o1.setPricePatternId(pricePatternsEntity.getId());
 //                o1.setGetFrom(logis.getId());
@@ -122,10 +135,74 @@ public class BuyerController {
 //                o1.setNumber(BigDecimal.valueOf(n++));
 //                o1.setPrice(BigDecimal.valueOf(45851));
 //                o1.setCreateDate(new Timestamp(System.currentTimeMillis()));
-                ordersRepository.save(o1);
+//                ordersRepository.save(o1);
+//
+//                System.out.println(";");
 
-                System.out.println(";");
+            OrderStatusesEntity oNew = orderStatusesRepository.findByCode("new");
+            BuyersEntity buyersEntity = buyersRepository.findAll().get(0);
+            SellersEntity sellersEntity = sellersRepository.findAll().get(0);
+            DeliveryTypesEntity deliveryTypesEntity = deliveryTypesRepository.findAll().get(0);
+            PricePatternsEntity pricePatternsEntity = pricePatternsRepository.findAll().get(0);
+            LogisticsPointsEntity logisticsPointsEntity = logisticsPointsRepository.findAll().get(0);
+
+
+            Optional<BigDecimal> n=ordersRepository.findAll().stream().map(s->s.getNumber()).max(new Comparator<BigDecimal>() {
+                @Override
+                public int compare(BigDecimal o1, BigDecimal o2) {
+                    return o1.compareTo(o2);
+                }
+            });
+            BigDecimal summ = BigDecimal.valueOf(0);
+            for (Order order : listOfOrdersv.getOrders()) {
+                if (order.getAmount() == 0) {
+                    continue;
+                }
+
+                BigDecimal s1 = order.getPrice();
+                BigDecimal s2 = BigDecimal.valueOf(order.getAmount());
+                summ = summ.add(s1.multiply(s2));
+
             }
+
+//            for (Order order : listOfOrdersv.getOrders()) {
+            OrdersEntity o1 = new OrdersEntity();
+            ordersRepository.save(o1);
+            o1.setStatus(oNew);
+            o1.setBuyer(buyersEntity);
+            o1.setSeller(sellersEntity);
+            o1.setSeller(sellersEntity);
+            o1.setDeliveryTypeId(deliveryTypesEntity.getId());
+            o1.setPricePatternId(pricePatternsEntity.getId());
+            o1.setSetTo(logisticsPointsEntity.getId());
+            o1.setGetFrom(logisticsPointsEntity.getId());
+            o1.setNumber((n.get().add(BigDecimal.ONE)));
+            o1.setCreateDate(new Timestamp(System.currentTimeMillis()));
+            o1.setPrice(summ);
+            ordersRepository.save(o1);
+
+            for (Order order : listOfOrdersv.getOrders()) {
+                if (order.getAmount() == 0) {
+                    continue;
+                }
+                OrdersProductsEntity uuu = ordersProductsRepository.save(new OrdersProductsEntity());
+                uuu.setPrice(order.getPrice());
+                uuu.setAmount(BigDecimal.valueOf(order.getAmount()));
+                uuu.setProduct(order.getProduct());
+                uuu.setOrder(o1);
+                BigDecimal s1 = order.getPrice();
+                BigDecimal s2 = BigDecimal.valueOf(order.getAmount());
+                uuu.setPrice(s1);
+                summ = summ.add(s1.multiply(s2));
+                ordersProductsRepository.save(uuu);
+            }
+
+            o1.setPrice(summ);
+//            ordersRepository.save(o1);
+//            }
+//            for (OrdersEntity ordersEntity : ordersRepository.findAll()) {
+//                ordersEntity.setDeleted(0);
+//            }
 
         } else if ("".equals(seller)) {
             //listOfOrders = new ListOfOrders(productService.findAll());

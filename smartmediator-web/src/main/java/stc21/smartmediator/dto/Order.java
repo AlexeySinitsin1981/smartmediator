@@ -3,11 +3,13 @@ package stc21.smartmediator.dto;
 import stc21.smartmediator.entity.ProductsEntity;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 public class Order {
     String name;
     BigDecimal price;
     Integer amount;
+    ProductsEntity product;
     BigDecimal maxAmount;
 
     public Order(String name, BigDecimal price, Integer amount, BigDecimal maxAmount) {
@@ -21,10 +23,19 @@ public class Order {
         this.name = productsEntity.getName();
         this.price = productsEntity.getPrice();
         this.amount = 0;
+        this.product = productsEntity;
         this.maxAmount = productsEntity.getQuantity();
     }
 
     public Order() {
+    }
+
+    public ProductsEntity getProduct() {
+        return product;
+    }
+
+    public void setProduct(ProductsEntity product) {
+        this.product = product;
     }
 
     public String getName() {

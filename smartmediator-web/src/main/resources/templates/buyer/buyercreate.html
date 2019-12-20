@@ -49,6 +49,7 @@
                         <input type="hidden" th:name="name" th:field="*{orders[__${iter.index}__].name}" />
                         <input type="hidden" th:name="price" th:field="*{orders[__${iter.index}__].price}" />
                         <input type="hidden" th:name="maxAmount" th:field="*{orders[__${iter.index}__].maxAmount}" />
+                        <input type="hidden" th:name="product" th:field="*{orders[__${iter.index}__].product}" />
                         <td th:name="name" th:text="${order.getName()}"/>
                         <td th:name="price" th:text="${order.getPrice()}"/>
                         <td><input th:name="amount" th:field="*{orders[__${iter.index}__].amount}"></td>

@@ -19,6 +19,7 @@ public class OrdersEntity {
     private BigDecimal number;
     private Timestamp createDate;
     private BigDecimal price;
+    private int deleted;
 
     private OrderStatusesEntity status;
     private BuyersEntity buyer;
@@ -67,6 +68,14 @@ public class OrdersEntity {
 
     public void setProducts(List<OrdersProductsEntity> products) {
         this.products = products;
+    }
+
+    public int getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(int deleted) {
+        this.deleted = deleted;
     }
 
     @Basic

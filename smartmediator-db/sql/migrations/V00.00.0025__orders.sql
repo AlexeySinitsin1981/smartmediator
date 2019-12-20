@@ -12,8 +12,9 @@ CREATE TABLE orders
     set_to           UUID           NULL,
     note             TEXT           NULL                 DEFAULT '',
     number           INT            NULL                 DEFAULT 0,
+    deleted          INT            NULL                 DEFAULT 0,
     price            NUMERIC(15, 2) NULL                 DEFAULT 0,
-    create_date      TIMESTAMP      NULL             DEFAULT CURRENT_DATE,
+    create_date      TIMESTAMP      NULL                 DEFAULT CURRENT_DATE,
     CONSTRAINT pk_orders UNIQUE (id),
     CONSTRAINT fk_orders_status FOREIGN KEY (status) REFERENCES order_statuses (id)
         ON DELETE RESTRICT ON UPDATE RESTRICT,

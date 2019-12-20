@@ -22,7 +22,8 @@ public class OrdersServiceImpl implements OrdersService {
     }
 
     public List findAll() {
-        return repository.findAll();
+
+        return repository.findAllByDeleted(0);
     }
 
     public OrdersEntity findById(UUID id) {

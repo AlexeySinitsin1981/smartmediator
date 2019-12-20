@@ -268,6 +268,7 @@ public class FillEntity {
         o1.setNumber(BigDecimal.valueOf(n++));
         o1.setPrice(BigDecimal.valueOf(45851));
         o1.setCreateDate(new Timestamp(System.currentTimeMillis()));
+//        o1.setDeleted(1);
         ordersRepository.save(o1);
 
         OrdersEntity o2 = new OrdersEntity();

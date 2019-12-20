@@ -30,6 +30,7 @@
             </thead>
             <tbody id="myTable">
             <th:block th:each="order : ${orders}">
+
                 <tr>
                     <td>
                         <a th:href="@{'/buyer/orders/' + ${order.getId()}}"
