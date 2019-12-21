@@ -11,7 +11,7 @@ public class DataSourceConfig {
     private static final String POSTGRESQL_DRIVER = "org.postgresql.Driver";
     private static final String url = "jdbc:postgresql://localhost:5432/postgres";
     private static final String nameOfDatabase = "postgres";
-    private static final String password = "123";
+    private static final String password = "postgres";
     @Bean
     public DataSource getDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
